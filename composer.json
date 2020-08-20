@@ -11,7 +11,8 @@
         "ext-json": "*",
         "ext-apache": "*",
         "ext-libxml": "*",
-        "ext-simplexml": "*"
+        "ext-simplexml": "*",
+        "ext-intl" : "*"
     },
     "keywords": [
         "oauth",
