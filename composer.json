@@ -42,7 +42,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "League\\OAuth2\\Server\\": "src/"
+            "Heimdall\\": "src/"
         }
     }
 }
