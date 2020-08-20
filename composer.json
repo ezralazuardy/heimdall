@@ -1,7 +1,6 @@
 {
     "name": "ezralazuardy/heimdall",
     "description": "Painless OAuth 2.0 for CodeIgniter 4",
-    "type": "library",
     "homepage": "https://github.com/ezralazuardy/heimdall",
     "license": "MIT",
     "require": {
@@ -46,6 +45,5 @@
             "name": "Ezra Lazuardy",
             "email": "ezralucio@gmail.com"
         }
-    ],
-    "minimum-stability": "alpha"
+    ]
 }

@@ -1,4 +1,4 @@
-<?php namespace Heimdall\Src;
+<?php namespace Heimdall\Http;
 
 use ArrayIterator;
 use Heimdall\Interfaces\CollectionInterface;
