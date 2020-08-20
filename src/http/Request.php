@@ -3,7 +3,6 @@
 use Closure;
 use Heimdall\Exception\InvalidMethodException;
 use Heimdall\Interfaces\Http\HeadersInterface;
-use Heimdall\Src\Collection;
 use InvalidArgumentException;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;

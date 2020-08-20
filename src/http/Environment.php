@@ -1,7 +1,6 @@
 <?php namespace Heimdall\Http;
 
 use Heimdall\Interfaces\Http\EnvironmentInterface;
-use Heimdall\Src\Collection;
 
 /**
  * Part of Slim Framework (https://slimframework.com)
