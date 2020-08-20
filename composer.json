@@ -7,11 +7,7 @@
         "codeigniter4/framework": "^4.0",
         "league/oauth2-server": "^8.1",
         "laminas/laminas-diactoros": "^2.3",
-        "steverhoades/oauth2-openid-connect-server": "^1.2",
-        "ext-json": "*",
-        "ext-apache": "*",
-        "ext-libxml": "*",
-        "ext-simplexml": "*"
+        "steverhoades/oauth2-openid-connect-server": "^1.2"
     },
     "keywords": [
         "oauth",
