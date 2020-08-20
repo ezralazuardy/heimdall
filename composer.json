@@ -39,5 +39,10 @@
             "name": "Ezra Lazuardy",
             "email": "ezralucio@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "League\\OAuth2\\Server\\": "src/"
+        }
+    }
 }
