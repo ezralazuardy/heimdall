@@ -1,39 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11fad23d-3b63-464a-9747-a2d99111850f" name="Default Changelist" comment="Initial commit">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="11fad23d-3b63-464a-9747-a2d99111850f" name="Default Changelist" comment="Rearrange package">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Heimdall.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Heimdall.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HeimdallConfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/HeimdallConfig.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HeimdallGrantType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/HeimdallGrantType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HeimdallOIDC.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/HeimdallOIDC.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HeimdallRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/HeimdallRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HeimdallResponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/HeimdallResponse.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HeimdallServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/HeimdallServer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception/HeimdallConfigException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception/HeimdallConfigException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception/HeimdallServerException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception/HeimdallServerException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exception/InvalidMethodException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/exception/InvalidMethodException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/Body.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/Body.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/Cookies.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/Cookies.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/Environment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/Environment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/Headers.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/Headers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/Message.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/NonBufferedBody.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/NonBufferedBody.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/Request.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/RequestBody.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/RequestBody.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/Response.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/StatusCode.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/StatusCode.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/Stream.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/Stream.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/UploadedFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/UploadedFile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/http/Uri.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/Uri.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interfaces/AuthorizationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/AuthorizationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interfaces/CollectionInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/CollectionInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interfaces/Http/CookiesInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Http/CookiesInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interfaces/Http/EnvironmentInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Http/EnvironmentInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interfaces/Http/HeadersInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/Http/HeadersInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Collection.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/Collection.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,8 +39,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ezral\PhpstormProjects\Heimdall\src" />
       <recent name="C:\Users\ezral\PhpstormProjects\Heimdall\src\http" />
+      <recent name="C:\Users\ezral\PhpstormProjects\Heimdall\src" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ezral\PhpstormProjects\Heimdall" />
@@ -85,7 +54,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1597932097627</updated>
-      <workItem from="1597932098811" duration="6268000" />
+      <workItem from="1597932098811" duration="6873000" />
     </task>
     <task id="LOCAL-00001" summary="Format code &amp; update copyright">
       <created>1597935905436</created>
@@ -108,7 +77,21 @@
       <option name="project" value="LOCAL" />
       <updated>1597936539756</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Rearrange package">
+      <created>1597938920955</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1597938920955</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Rearrange package">
+      <created>1597939055870</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1597939055870</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,7 +100,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Format code &amp; update copyright" />
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Rearrange package" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rearrange package" />
   </component>
   <component name="WindowStateProjectService">
     <state x="545" y="325" key="ComposerInitDialogKey" timestamp="1597934459359">
@@ -144,10 +128,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1597936592839" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1597936606894">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1597939074937">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597936606894" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597939074937" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597935046184">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
