@@ -2,5 +2,4 @@
 
 use League\OAuth2\Server\Exception\OAuthServerException;
 
-class HeimdallServerException extends OAuthServerException
-{ }
+class HeimdallServerException extends OAuthServerException { }

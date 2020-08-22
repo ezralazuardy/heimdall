@@ -36,7 +36,6 @@ abstract class Heimdall
      * @param HeimdallAuthorizationGrantType $grantType
      * @param HeimdallAuthorizationOIDC|null $oidc
      * @return HeimdallAuthorizationServer
-     * @throws Exception
      */
     static function initializeAuthorizationServer(
         HeimdallAuthorizationConfig $config,
