@@ -22,7 +22,7 @@ class HeimdallResourceConfig
     function __construct(
         AccessTokenRepositoryInterface $accessTokenRepository,
         array $publicKey,
-        AuthorizationValidatorInterface $authorizationValidator
+        $authorizationValidator
     ) {
         $this->accessTokenRepository = $accessTokenRepository;
         $this->publicKey = new CryptKey(
