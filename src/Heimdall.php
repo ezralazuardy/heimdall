@@ -14,6 +14,7 @@ use Heimdall\interfaces\IdentityRepositoryInterface;
 use Heimdall\Plugin\HeimdallAuthorizationOIDC;
 use Heimdall\Server\HeimdallAuthorizationServer;
 use Heimdall\Server\HeimdallResourceServer;
+use League\OAuth2\Server\AuthorizationValidators\AuthorizationValidatorInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Grant\AuthCodeGrant;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
@@ -155,7 +156,7 @@ abstract class Heimdall
      * @return HeimdallAuthorizationConfig
      * @throws Exception
      */
-    static function withConfig(
+    static function withAuthorizationConfig(
         ClientRepositoryInterface $clientRepository,
         AccessTokenRepositoryInterface $accessTokenRepository,
         ScopeRepositoryInterface $scopeRepository,
@@ -167,6 +168,22 @@ abstract class Heimdall
         return new HeimdallAuthorizationConfig(
             $clientRepository, $accessTokenRepository, $scopeRepository, $privateKey, $responseType
         );
+    }
+
+    /**
+     * @param AccessTokenRepositoryInterface $accessTokenRepository
+     * @param $publicKey
+     * @param AuthorizationValidatorInterface|null $authorizationValidator
+     * @return HeimdallResourceConfig
+     */
+    static function withResourceConfig(
+        AccessTokenRepositoryInterface $accessTokenRepository,
+        $publicKey,
+        AuthorizationValidatorInterface $authorizationValidator = null
+    ): HeimdallResourceConfig
+    {
+        if(is_string($publicKey)) $publicKey = ['path' => $publicKey];
+        return new HeimdallResourceConfig($accessTokenRepository, $publicKey, $authorizationValidator);
     }
 
     /**
