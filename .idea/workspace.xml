@@ -19,12 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11fad23d-3b63-464a-9747-a2d99111850f" name="Default Changelist" comment="Refactor directories">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Config/HeimdallResourceConfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config/HeimdallResourceConfig.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Heimdall.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Heimdall.php" afterDir="false" />
-    </list>
+    <list default="true" id="11fad23d-3b63-464a-9747-a2d99111850f" name="Default Changelist" comment="Add resource server config builder" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,7 +95,7 @@
       <option name="presentableId" value="Default" />
       <updated>1597932097627</updated>
       <workItem from="1597932098811" duration="10969000" />
-      <workItem from="1598087573488" duration="7959000" />
+      <workItem from="1598087573488" duration="8290000" />
     </task>
     <task id="LOCAL-00001" summary="Format code &amp; update copyright">
       <created>1597935905436</created>
@@ -207,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598096644910</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Add resource server config builder">
+      <created>1598097082546</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1598097082546</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +234,8 @@
     <MESSAGE value="Update compose package" />
     <MESSAGE value="Add resource server validation feature" />
     <MESSAGE value="Refactor directories" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor directories" />
+    <MESSAGE value="Add resource server config builder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add resource server config builder" />
   </component>
   <component name="WindowStateProjectService">
     <state x="278" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1598093370855">
@@ -271,10 +274,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1597936592839" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1598096654207">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1598097088473">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1598096654207" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1598097088473" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597935046184">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

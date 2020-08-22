@@ -10,7 +10,6 @@
         "laminas/laminas-diactoros": "^2.3",
         "steverhoades/oauth2-openid-connect-server": "^1.2",
         "ext-json": "*",
-        "ext-apache": "*",
         "ext-libxml": "*",
         "ext-simplexml": "*"
     },
