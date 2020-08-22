@@ -1,6 +1,5 @@
 <?php namespace Heimdall\Config;
 
-use Exception;
 use League\OAuth2\Server\CryptKey;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
@@ -23,13 +22,12 @@ class HeimdallAuthorizationConfig
     private $clientRepository, $accessTokenRepository, $scopeRepository, $privateKey, $responseType;
 
     /**
-     * HeimdallConfig constructor.
-     * @param $clientRepository
-     * @param $scopeRepository
-     * @param $accessTokenRepository
-     * @param array $privateKey
-     * @param $responseType
-     * @throws Exception
+     * HeimdallAuthorizationConfig constructor.
+     * @param ClientRepositoryInterface $clientRepository
+     * @param AccessTokenRepositoryInterface $accessTokenRepository
+     * @param ScopeRepositoryInterface $scopeRepository
+     * @param $privateKey
+     * @param ResponseTypeInterface|null $responseType
      */
     function __construct(
         ClientRepositoryInterface $clientRepository,
