@@ -1,14 +1,27 @@
 <?php namespace Heimdall;
 
-use Heimdall\Exception\HeimdallConfigException;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\Response;
 use DateInterval;
 use Exception;
+use Heimdall\Config\HeimdallAuthorizationConfig;
+use Heimdall\Config\HeimdallAuthorizationGrantType;
+use Heimdall\Config\HeimdallResourceConfig;
+use Heimdall\Exception\HeimdallConfigException;
+use Heimdall\Http\HeimdallRequest;
+use Heimdall\Http\HeimdallResponse;
+use Heimdall\interfaces\IdentityRepositoryInterface;
+use Heimdall\Plugin\HeimdallAuthorizationOIDC;
+use Heimdall\Server\HeimdallAuthorizationServer;
+use Heimdall\Server\HeimdallResourceServer;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Grant\AuthCodeGrant;
+use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
+use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
+use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
+use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -18,17 +31,21 @@ use Psr\Http\Message\ResponseInterface;
 abstract class Heimdall
 {
     /**
-     * @param HeimdallConfig $config
-     * @param HeimdallGrantType $grantType
-     * @param HeimdallOIDC|null $oidc
-     * @return HeimdallServer
+     * @param HeimdallAuthorizationConfig $config
+     * @param HeimdallAuthorizationGrantType $grantType
+     * @param HeimdallAuthorizationOIDC|null $oidc
+     * @return HeimdallAuthorizationServer
      * @throws Exception
      */
-    static function initialize(HeimdallConfig $config, HeimdallGrantType $grantType, HeimdallOIDC $oidc = null)
+    static function initializeAuthorizationServer(
+        HeimdallAuthorizationConfig $config,
+        HeimdallAuthorizationGrantType $grantType,
+        HeimdallAuthorizationOIDC $oidc = null
+    ): HeimdallAuthorizationServer
     {
         switch ($grantType->getCode()) {
-            case HeimdallGrantType::AuthorizationCode:
-                return new HeimdallServer($config, $grantType, $oidc);
+            case HeimdallAuthorizationGrantType::AuthorizationCode:
+                return new HeimdallAuthorizationServer($config, $grantType, $oidc);
             default:
                 throw new HeimdallConfigException(
                     'Unknown Heimdall grant type, please recheck your parameter.'
@@ -37,10 +54,19 @@ abstract class Heimdall
     }
 
     /**
+     * @param HeimdallResourceConfig $config
+     * @return HeimdallResourceServer
+     */
+    static function initializeResourceServer(HeimdallResourceConfig $config): HeimdallResourceServer
+    {
+        return new HeimdallResourceServer($config);
+    }
+
+    /**
      * @param IncomingRequest $request
      * @return HeimdallRequest
      */
-    static function handleRequest(IncomingRequest $request)
+    static function handleRequest(IncomingRequest $request): HeimdallRequest
     {
         return (new HeimdallRequest($request))->withParsedBody($request->getPost());
     }
@@ -49,7 +75,7 @@ abstract class Heimdall
      * @param Response $response
      * @return HeimdallResponse
      */
-    static function handleResponse(Response $response)
+    static function handleResponse(Response $response): HeimdallResponse
     {
         return new HeimdallResponse($response);
     }
@@ -59,7 +85,7 @@ abstract class Heimdall
      * @param Response $response
      * @return Response
      */
-    static function return(ResponseInterface $generatedResponse, Response $response)
+    static function return(ResponseInterface $generatedResponse, Response $response): Response
     {
         $formattedResponse = $response
             ->setContentType('application/json')
@@ -73,7 +99,7 @@ abstract class Heimdall
     /**
      * @param Exception $exception
      * @param Response $response
-     * @return Response
+     * @return Response|void
      */
     static function handleException(Exception $exception, Response $response)
     {
@@ -110,6 +136,7 @@ abstract class Heimdall
      * @param $something
      * @param bool $prettify
      * @param bool $asJSON
+     * @return void
      */
     static function debug($something, $prettify = true, $asJSON = false)
     {
@@ -120,49 +147,56 @@ abstract class Heimdall
     }
 
     /**
-     * @param $clientRepository
-     * @param $accessTokenRepository
-     * @param $scopeRepository
+     * @param ClientRepositoryInterface $clientRepository
+     * @param AccessTokenRepositoryInterface $accessTokenRepository
+     * @param ScopeRepositoryInterface $scopeRepository
      * @param $privateKey
-     * @param null $responseType
-     * @return HeimdallConfig
+     * @param ResponseTypeInterface|null $responseType
+     * @return HeimdallAuthorizationConfig
      * @throws Exception
      */
     static function withConfig(
-        $clientRepository, $accessTokenRepository, $scopeRepository, $privateKey, $responseType = null
-    ) {
+        ClientRepositoryInterface $clientRepository,
+        AccessTokenRepositoryInterface $accessTokenRepository,
+        ScopeRepositoryInterface $scopeRepository,
+        $privateKey,
+        ResponseTypeInterface $responseType = null
+    ): HeimdallAuthorizationConfig
+    {
         if(is_string($privateKey)) $privateKey = ['path' => $privateKey];
-        return new HeimdallConfig(
+        return new HeimdallAuthorizationConfig(
             $clientRepository, $accessTokenRepository, $scopeRepository, $privateKey, $responseType
         );
     }
 
     /**
-     * @param $identityRepository
+     * @param IdentityRepositoryInterface $identityRepository
      * @param array $claimSet
-     * @return HeimdallOIDC
+     * @return HeimdallAuthorizationOIDC
      * @throws Exception
      */
-    static function withOIDC($identityRepository, array $claimSet = [])
+    static function withOIDC(
+        IdentityRepositoryInterface $identityRepository, array $claimSet = []
+    ): HeimdallAuthorizationOIDC
     {
-        return new HeimdallOIDC($identityRepository, $claimSet);
+        return new HeimdallAuthorizationOIDC($identityRepository, $claimSet);
     }
 
     /**
-     * @param $authCodeRepository
-     * @param $refreshTokenRepository
+     * @param AuthCodeRepositoryInterface $authCodeRepository
+     * @param RefreshTokenRepositoryInterface $refreshTokenRepository
      * @param string $accessTokenTTL
-     * @return HeimdallGrantType
+     * @return HeimdallAuthorizationGrantType
      */
-    static function withAuthorizationGrantType($authCodeRepository, $refreshTokenRepository, $accessTokenTTL = 'PT1H')
+    static function withAuthorizationGrantType(
+        AuthCodeRepositoryInterface $authCodeRepository,
+        RefreshTokenRepositoryInterface $refreshTokenRepository,
+        $accessTokenTTL = 'PT1H'
+    ): HeimdallAuthorizationGrantType
     {
         try {
-            $authCodeRepository = new $authCodeRepository;
-            if(!($authCodeRepository instanceof AuthCodeRepositoryInterface)) $authCodeRepository = null;
-            $refreshTokenRepository = new $refreshTokenRepository;
-            if(!($refreshTokenRepository instanceof RefreshTokenRepositoryInterface)) $refreshTokenRepository = null;
-            return new HeimdallGrantType(
-                HeimdallGrantType::AuthorizationCode,
+            return new HeimdallAuthorizationGrantType(
+                HeimdallAuthorizationGrantType::AuthorizationCode,
                 new AuthCodeGrant($authCodeRepository, $refreshTokenRepository, new DateInterval('PT10M')),
                 $accessTokenTTL
             );

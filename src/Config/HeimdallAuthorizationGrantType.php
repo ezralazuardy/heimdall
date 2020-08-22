@@ -1,10 +1,12 @@
-<?php namespace Heimdall;
+<?php namespace Heimdall\Config;
+
+use League\OAuth2\Server\Grant\AbstractGrant;
 
 /**
  * Class HeimdallGrantType
  * @package Heimdall
  */
-class HeimdallGrantType
+class HeimdallAuthorizationGrantType
 {
     /**
      * HeimdallGrantType Support Type
@@ -17,17 +19,18 @@ class HeimdallGrantType
 
     /**
      * @var int $grantType,
-     * @var mixed $grantType
+     * @var AbstractGrant $grantType
+     * @var string $accessTokenTTL
      */
     private $grantTypeCode, $grantType, $accessTokenTTL;
 
     /**
-     * HeimdallGrantType constructor.
+     * HeimdallAuthorizationGrantType constructor.
      * @param int $grantTypeCode
-     * @param $grantType
+     * @param AbstractGrant $grantType
      * @param string $accessTokenTTL
      */
-    function __construct(int $grantTypeCode, $grantType, string $accessTokenTTL) {
+    function __construct(int $grantTypeCode, AbstractGrant $grantType, string $accessTokenTTL) {
         $this->grantTypeCode = $grantTypeCode;
         $this->grantType = $grantType;
         $this->accessTokenTTL = $accessTokenTTL;
@@ -42,9 +45,9 @@ class HeimdallGrantType
     }
 
     /**
-     * @return mixed
+     * @return AbstractGrant
      */
-    function getGrantType()
+    function getGrantType(): AbstractGrant
     {
         return $this->grantType;
     }

@@ -1,14 +1,16 @@
-<?php namespace Heimdall;
+<?php namespace Heimdall\Server;
 
-use Heimdall\Exception\HeimdallConfigException;
-use Heimdall\Exception\HeimdallServerException;
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\Response;
 use DateInterval;
 use Exception;
+use Heimdall\Config\HeimdallAuthorizationConfig;
+use Heimdall\Config\HeimdallAuthorizationGrantType;
+use Heimdall\Exception\HeimdallConfigException;
+use Heimdall\Heimdall;
+use Heimdall\Plugin\HeimdallAuthorizationOIDC;
 use League\OAuth2\Server\AuthorizationServer;
-use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\RequestTypes\AuthorizationRequest;
 use Psr\Http\Message\ResponseInterface;
 
@@ -16,7 +18,7 @@ use Psr\Http\Message\ResponseInterface;
  * Class HeimdallServer
  * @package Heimdall\Src
  */
-class HeimdallServer
+class HeimdallAuthorizationServer
 {
     use ResponseTrait;
 
@@ -26,11 +28,11 @@ class HeimdallServer
     private $server;
 
     /**
-     * @param HeimdallConfig $config
-     * @param HeimdallOIDC|null $oidc
-     * @return $this
+     * @param HeimdallAuthorizationConfig $config
+     * @param $oidc
+     * @return HeimdallAuthorizationServer
      */
-    private function initialize(HeimdallConfig $config, $oidc)
+    private function initialize(HeimdallAuthorizationConfig $config, $oidc): HeimdallAuthorizationServer
     {
         try {
             if(empty(getenv('encryption.key'))) throw new HeimdallConfigException(
@@ -47,17 +49,17 @@ class HeimdallServer
             return $this;
         } catch (Exception $exception) {
             throw new HeimdallConfigException(
-                'Error when initializing Heimdall, please check your configuration.',
+                'Error when initializing Heimdall Authorization Server, please check your configuration.',
                 $exception->getCode()
             );
         }
     }
 
     /**
-     * @param HeimdallGrantType $grantType
+     * @param HeimdallAuthorizationGrantType $grantType
      * @return $this
      */
-    private function setGrantType(HeimdallGrantType $grantType)
+    private function setGrantType(HeimdallAuthorizationGrantType $grantType): HeimdallAuthorizationServer
     {
         try {
             $this->server->enableGrantType(
@@ -74,25 +76,29 @@ class HeimdallServer
     }
 
     /**
-     * HeimdallServer constructor.
-     * @param HeimdallConfig $config
-     * @param HeimdallGrantType $grantType
-     * @param HeimdallOIDC|null $oidc
-     * @throws Exception
+     * HeimdallAuthorizationServer constructor.
+     * @param HeimdallAuthorizationConfig $config
+     * @param HeimdallAuthorizationGrantType $grantType
+     * @param HeimdallAuthorizationOIDC|null $oidc
      */
-    function __construct(HeimdallConfig $config, HeimdallGrantType $grantType, HeimdallOIDC $oidc = null)
-    {
+    function __construct(
+        HeimdallAuthorizationConfig $config,
+        HeimdallAuthorizationGrantType $grantType,
+        HeimdallAuthorizationOIDC $oidc = null
+    ) {
         $this->initialize($config, $oidc)->setGrantType($grantType);
     }
 
     /**
      * @param $request
      * @param $response
+     * @return $this
      */
-    function bootstrap(&$request, &$response)
+    function bootstrap(&$request, &$response): HeimdallAuthorizationServer
     {
         $this->request = &$request;
         $this->response = &$response;
+        return $this;
     }
 
     /**
@@ -108,9 +114,9 @@ class HeimdallServer
 
     /**
      * @param IncomingRequest $request
-     * @return HeimdallServer
+     * @return HeimdallAuthorizationServer
      */
-    function withRequest(IncomingRequest $request)
+    function withRequest(IncomingRequest $request): HeimdallAuthorizationServer
     {
         $this->request = $request;
         return $this;
@@ -118,9 +124,9 @@ class HeimdallServer
 
     /**
      * @param Response $response
-     * @return HeimdallServer
+     * @return HeimdallAuthorizationServer
      */
-    function withResponse(Response $response)
+    function withResponse(Response $response): HeimdallAuthorizationServer
     {
         $this->response = $response;
         return $this;
@@ -145,28 +151,22 @@ class HeimdallServer
     }
 
     /**
-     * @return AuthorizationRequest
-     * @throws Exception
+     * @return AuthorizationRequest|Response|void
      */
     function validateAuth()
     {
         try {
-
             $authRequest = $this->server->validateAuthorizationRequest(Heimdall::handleRequest($this->request));
             $authRequest->setAuthorizationApproved(true);
             return $authRequest;
-        } catch (OAuthServerException $exception) {
-            throw new HeimdallServerException(
-                $exception->getMessage(),
-                $exception->getCode(),
-                $exception->getErrorType()
-            );
+        } catch (Exception $exception) {
+            Heimdall::handleException($exception, $this->response);
         }
     }
 
     /**
      * @param AuthorizationRequest $authorizationRequest
-     * @throws Exception
+     * @return ResponseInterface|Response|void
      */
     function completeAuth(AuthorizationRequest $authorizationRequest)
     {
@@ -176,16 +176,12 @@ class HeimdallServer
                 Heimdall::handleResponse($this->response)
             ));
         } catch (Exception $exception) {
-            throw new HeimdallServerException(
-                $exception->getMessage(),
-                $exception->getCode(),
-                'unknown'
-            );
+            Heimdall::handleException($exception, $this->response);
         }
     }
 
     /**
-     * @throws Exception
+     * @return ResponseInterface|Response|void
      */
     function createToken()
     {
@@ -194,12 +190,8 @@ class HeimdallServer
                 Heimdall::handleRequest($this->request),
                 Heimdall::handleResponse($this->response)
             ));
-        } catch (OAuthServerException $exception) {
-            throw new HeimdallServerException(
-                $exception->getMessage(),
-                $exception->getCode(),
-                $exception->getErrorType()
-            );
+        } catch (Exception $exception) {
+            Heimdall::handleException($exception, $this->response);
         }
     }
 }

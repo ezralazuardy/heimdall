@@ -1,7 +1,4 @@
-<?php namespace Heimdall;
-
-use Heimdall\Http\Headers;
-use Heimdall\Http\Response;
+<?php namespace Heimdall\Http;
 
 /**
  * Class HeimdallResponse

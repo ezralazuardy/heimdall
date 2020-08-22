@@ -1,9 +1,5 @@
-<?php namespace Heimdall;
+<?php namespace Heimdall\Http;
 
-use Heimdall\Http\Body;
-use Heimdall\Http\Headers;
-use Heimdall\Http\Request;
-use Heimdall\Http\Uri;
 use CodeIgniter\HTTP\IncomingRequest;
 
 /**

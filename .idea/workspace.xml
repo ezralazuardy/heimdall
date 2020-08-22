@@ -1,13 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="11fad23d-3b63-464a-9747-a2d99111850f" name="Default Changelist" comment="Update compose package" />
+    <list default="true" id="11fad23d-3b63-464a-9747-a2d99111850f" name="Default Changelist" comment="Update compose package">
+      <change afterPath="$PROJECT_DIR$/src/Config/HeimdallResourceConfig.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Server/HeimdallResourceServer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/interfaces/IdentityRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Heimdall.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Heimdall.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exception/HeimdallConfigException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/HeimdallConfigException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exception/InvalidMethodException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/InvalidMethodException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Heimdall.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Heimdall.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HeimdallConfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config/HeimdallAuthorizationConfig.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HeimdallGrantType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config/HeimdallAuthorizationGrantType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HeimdallOIDC.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Plugin/HeimdallAuthorizationOIDC.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HeimdallRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/HeimdallRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HeimdallResponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/HeimdallResponse.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HeimdallServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/HeimdallAuthorizationServer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Collection.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Collection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Cookies.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Cookies.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Environment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Environment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Headers.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Headers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Message.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Message.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/NonBufferedBody.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/NonBufferedBody.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Request.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Response.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Stream.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Stream.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/UploadedFile.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/UploadedFile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Uri.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Uri.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/CollectionInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/CollectionInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/Http/CookiesInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/Http/CookiesInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/Http/HeadersInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/Http/HeadersInterface.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <executable path="composer" />
     </execution>
@@ -18,9 +68,29 @@
   <component name="MacroExpansionManager">
     <option name="directoryName" value="p4pwt89l" />
   </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-diactoros" />
+      <path value="$PROJECT_DIR$/vendor/league/oauth2-server" />
+      <path value="$PROJECT_DIR$/vendor/league/event" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/steverhoades/oauth2-openid-connect-server" />
+      <path value="$PROJECT_DIR$/vendor/codeigniter4/framework" />
+      <path value="$PROJECT_DIR$/vendor/defuse/php-encryption" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/kint-php/kint" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-zendframework-bridge" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-escaper" />
+    </include_path>
+  </component>
   <component name="ProjectId" id="1gMkxq6CLD6wIvzBjSIfS4AlY61" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -36,12 +106,15 @@
     <property name="settings.editor.selected.configurable" value="copyright.profiles" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ezral\PhpstormProjects\Heimdall\src\http" />
-      <recent name="C:\Users\ezral\PhpstormProjects\Heimdall\src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ezral\PhpstormProjects\Heimdall" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ezral\PhpstormProjects\Heimdall\src\Server" />
+      <recent name="C:\Users\ezral\PhpstormProjects\Heimdall\src\Plugin" />
+      <recent name="C:\Users\ezral\PhpstormProjects\Heimdall\src\Config" />
+      <recent name="C:\Users\ezral\PhpstormProjects\Heimdall\src\http" />
+      <recent name="C:\Users\ezral\PhpstormProjects\Heimdall\src" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -52,7 +125,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1597932097627</updated>
-      <workItem from="1597932098811" duration="10505000" />
+      <workItem from="1597932098811" duration="10969000" />
+      <workItem from="1598087573488" duration="5895000" />
     </task>
     <task id="LOCAL-00001" summary="Format code &amp; update copyright">
       <created>1597935905436</created>
@@ -138,11 +212,29 @@
       <option name="project" value="LOCAL" />
       <updated>1597944326510</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Update compose package">
+      <created>1597944841145</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1597944841145</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Format code &amp; update copyright" />
@@ -153,6 +245,14 @@
     <option name="LAST_COMMIT_MESSAGE" value="Update compose package" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="278" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1598093370855">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="278" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1598093370855" />
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1598092206408">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1598092206408" />
     <state x="545" y="325" key="ComposerInitDialogKey" timestamp="1597934459359">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -169,6 +269,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="458" y="117" key="Github.UntrackedFilesDialog/0.0.1536.824@0.0.1536.824" timestamp="1597934662282" />
+    <state x="549" y="135" key="NewPhpClassDialog" timestamp="1598093240656">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="135" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1598093240656" />
     <state x="569" y="115" key="RollbackChangesDialog" timestamp="1597936465211">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -177,10 +281,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1597936592839" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1597944332218">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1597944846399">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597944332218" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597944846399" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597935046184">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

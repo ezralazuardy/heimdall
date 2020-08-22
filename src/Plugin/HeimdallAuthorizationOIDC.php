@@ -1,7 +1,8 @@
-<?php namespace Heimdall;
+<?php namespace Heimdall\Plugin;
 
-use Heimdall\Exception\HeimdallConfigException;
 use Exception;
+use Heimdall\Exception\HeimdallConfigException;
+use Heimdall\interfaces\IdentityRepositoryInterface;
 use OpenIDConnectServer\ClaimExtractor;
 use OpenIDConnectServer\IdTokenResponse;
 
@@ -9,7 +10,7 @@ use OpenIDConnectServer\IdTokenResponse;
  * Class HeimdallOIDC
  * @package Heimdall
  */
-class HeimdallOIDC
+class HeimdallAuthorizationOIDC
 {
     /**
      * @var IdTokenResponse
@@ -18,18 +19,17 @@ class HeimdallOIDC
 
     /**
      * HeimdallOIDC constructor.
-     * @param $identityRepository
+     * @param IdentityRepositoryInterface $identityRepository
      * @param array $claimSet
-     * @throws Exception
      */
-    function __construct($identityRepository, array $claimSet)
+    function __construct(IdentityRepositoryInterface $identityRepository, array $claimSet)
     {
         try {
             $identityRepository = new $identityRepository();
             $this->responseType = new IdTokenResponse($identityRepository, new ClaimExtractor($claimSet));
         } catch (Exception $exception) {
             throw new HeimdallConfigException(
-                'Error happened when enabling Heimdall OIDC, please recheck your parameter.'
+                'Error happened when enabling Heimdall Authorization Server OIDC, please recheck your parameter.'
             );
         }
     }
@@ -37,7 +37,7 @@ class HeimdallOIDC
     /**
      * @return IdTokenResponse
      */
-    function getResponseType()
+    function getResponseType(): IdTokenResponse
     {
         return $this->responseType;
     }
