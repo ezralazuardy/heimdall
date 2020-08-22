@@ -17,11 +17,16 @@ use Heimdall\Server\HeimdallAuthorizationServer;
 use Heimdall\Server\HeimdallResourceServer;
 use League\OAuth2\Server\AuthorizationValidators\AuthorizationValidatorInterface;
 use League\OAuth2\Server\Grant\AuthCodeGrant;
+use League\OAuth2\Server\Grant\ClientCredentialsGrant;
+use League\OAuth2\Server\Grant\ImplicitGrant;
+use League\OAuth2\Server\Grant\PasswordGrant;
+use League\OAuth2\Server\Grant\RefreshTokenGrant;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
+use League\OAuth2\Server\Repositories\UserRepositoryInterface;
 use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -185,26 +190,135 @@ abstract class Heimdall
     }
 
     /**
+     * @param string $accessTokenTTL
+     * @return HeimdallAuthorizationGrantType
+     */
+    static function withClientCredentialsGrantType(
+        string $accessTokenTTL = 'PT1H'
+    ): HeimdallAuthorizationGrantType
+    {
+        try {
+            return new HeimdallAuthorizationGrantType(
+                HeimdallAuthorizationGrantType::ClientCredentials,
+                new ClientCredentialsGrant(),
+                $accessTokenTTL
+            );
+        } catch (Exception $exception) {
+            throw new HeimdallConfigException(
+                'Error happened initializing Heimdall grant type, please recheck your parameter.',
+                $exception->getCode()
+            );
+        }
+    }
+
+    /**
+     * @param UserRepositoryInterface $userRepository
+     * @param RefreshTokenRepositoryInterface $refreshTokenRepository
+     * @param string $refreshTokenTTL
+     * @param string $accessTokenTTL
+     * @return HeimdallAuthorizationGrantType
+     */
+    static function withPasswordGrantType(
+        UserRepositoryInterface $userRepository,
+        RefreshTokenRepositoryInterface $refreshTokenRepository,
+        string $refreshTokenTTL = 'P1M',
+        string $accessTokenTTL = 'PT1H'
+    ): HeimdallAuthorizationGrantType
+    {
+        try {
+            $passwordGrant = new PasswordGrant($userRepository, $refreshTokenRepository);
+            $passwordGrant->setRefreshTokenTTL(new DateInterval($refreshTokenTTL));
+            return new HeimdallAuthorizationGrantType(
+                HeimdallAuthorizationGrantType::PasswordCredentials,
+                $passwordGrant,
+                $accessTokenTTL
+            );
+        } catch (Exception $exception) {
+            throw new HeimdallConfigException(
+                'Error happened initializing Heimdall grant type, please recheck your parameter.',
+                $exception->getCode()
+            );
+        }
+    }
+
+    /**
      * @param AuthCodeRepositoryInterface $authCodeRepository
      * @param RefreshTokenRepositoryInterface $refreshTokenRepository
+     * @param string $authCodeTTL
+     * @param string $refreshTokenTTL
      * @param string $accessTokenTTL
      * @return HeimdallAuthorizationGrantType
      */
     static function withAuthorizationGrantType(
         AuthCodeRepositoryInterface $authCodeRepository,
         RefreshTokenRepositoryInterface $refreshTokenRepository,
-        $accessTokenTTL = 'PT1H'
+        string $authCodeTTL = 'PT10M',
+        string $refreshTokenTTL = 'P1M',
+        string $accessTokenTTL = 'PT1H'
+    ): HeimdallAuthorizationGrantType
+    {
+        try {
+            $authCodeGrant = new AuthCodeGrant($authCodeRepository, $refreshTokenRepository, new DateInterval($authCodeTTL));
+            $authCodeGrant->setRefreshTokenTTL(new DateInterval($refreshTokenTTL));
+            return new HeimdallAuthorizationGrantType(
+                HeimdallAuthorizationGrantType::AuthorizationCode,
+                $authCodeGrant,
+                $accessTokenTTL
+            );
+        } catch (Exception $exception) {
+            throw new HeimdallConfigException(
+                'Error happened initializing Heimdall grant type, please recheck your parameter.',
+                $exception->getCode()
+            );
+        }
+    }
+
+    /**
+     * @param string $accessTokenTTL
+     * @return HeimdallAuthorizationGrantType
+     */
+    static function withImplicitGrantType(
+        string $accessTokenTTL = 'PT1H'
     ): HeimdallAuthorizationGrantType
     {
         try {
             return new HeimdallAuthorizationGrantType(
-                HeimdallAuthorizationGrantType::AuthorizationCode,
-                new AuthCodeGrant($authCodeRepository, $refreshTokenRepository, new DateInterval('PT10M')),
+                HeimdallAuthorizationGrantType::Implicit,
+                new ImplicitGrant(new DateInterval($accessTokenTTL)),
                 $accessTokenTTL
             );
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw new HeimdallConfigException(
-                'Error happened initializing Heimdall grant type, please recheck your parameter.'
+                'Error happened initializing Heimdall grant type, please recheck your parameter.',
+                $exception->getCode()
+            );
+        }
+    }
+
+    /**
+     * @param RefreshTokenRepositoryInterface $refreshTokenRepository
+     * @param string $refreshTokenTTL
+     * @param string $accessTokenTTL
+     * @return HeimdallAuthorizationGrantType
+     */
+    static function withRefreshTokenGrantType(
+        RefreshTokenRepositoryInterface $refreshTokenRepository,
+        string $refreshTokenTTL = 'P1M',
+        string $accessTokenTTL = 'PT1H'
+    ): HeimdallAuthorizationGrantType
+    {
+        try {
+            $refreshTokenGrant = new RefreshTokenGrant($refreshTokenRepository);
+            $refreshTokenGrant->setRefreshTokenTTL(new DateInterval($refreshTokenTTL));
+            return new HeimdallAuthorizationGrantType(
+                HeimdallAuthorizationGrantType::RefreshToken,
+                $refreshTokenGrant,
+                $accessTokenTTL
+            );
+        } catch (Exception $exception) {
+            throw new HeimdallConfigException(
+                'Error happened initializing Heimdall grant type, please recheck your parameter.',
+                $exception->getCode()
             );
         }
     }

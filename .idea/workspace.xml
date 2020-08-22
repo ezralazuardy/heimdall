@@ -19,7 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11fad23d-3b63-464a-9747-a2d99111850f" name="Default Changelist" comment="Refactor unused code &amp; update composer.json">
+    <list default="true" id="11fad23d-3b63-464a-9747-a2d99111850f" name="Default Changelist" comment="Fix exception handling bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Heimdall.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Heimdall.php" afterDir="false" />
     </list>
@@ -97,7 +97,7 @@
       <option name="presentableId" value="Default" />
       <updated>1597932097627</updated>
       <workItem from="1597932098811" duration="10969000" />
-      <workItem from="1598087573488" duration="18013000" />
+      <workItem from="1598087573488" duration="20331000" />
     </task>
     <task id="LOCAL-00001" summary="Format code &amp; update copyright">
       <created>1597935905436</created>
@@ -274,7 +274,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598110922589</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Fix exception handling bug">
+      <created>1598111691750</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1598111691750</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,7 +312,8 @@
     <MESSAGE value="Update composer.json" />
     <MESSAGE value="Refactor unused code" />
     <MESSAGE value="Refactor unused code &amp; update composer.json" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor unused code &amp; update composer.json" />
+    <MESSAGE value="Fix exception handling bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix exception handling bug" />
   </component>
   <component name="WindowStateProjectService">
     <state x="278" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1598093370855">
@@ -344,10 +352,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1598110568827" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1598111004915">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1598111695510">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1598111004915" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1598111695510" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597935046184">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

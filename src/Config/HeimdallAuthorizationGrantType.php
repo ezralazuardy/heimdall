@@ -9,7 +9,7 @@ use League\OAuth2\Server\Grant\AbstractGrant;
 class HeimdallAuthorizationGrantType
 {
     /**
-     * HeimdallGrantType Support Type
+     * Supported HeimdallAuthorizationGrantType
      */
     const ClientCredentials = 0;
     const PasswordCredentials = 1;
