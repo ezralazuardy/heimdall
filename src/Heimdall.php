@@ -142,7 +142,6 @@ abstract class Heimdall
      * @param $privateKey
      * @param ResponseTypeInterface|null $responseType
      * @return HeimdallAuthorizationConfig
-     * @throws Exception
      */
     static function withAuthorizationConfig(
         ClientRepositoryInterface $clientRepository,
@@ -178,7 +177,6 @@ abstract class Heimdall
      * @param IdentityRepositoryInterface $identityRepository
      * @param array $claimSet
      * @return HeimdallAuthorizationOIDC
-     * @throws Exception
      */
     static function withOIDC(
         IdentityRepositoryInterface $identityRepository, array $claimSet = []
