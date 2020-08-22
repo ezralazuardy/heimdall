@@ -2,7 +2,7 @@
 
 use Closure;
 use Heimdall\Exception\InvalidMethodException;
-use Heimdall\Interfaces\Http\HeadersInterface;
+use Heimdall\interfaces\Http\HeadersInterface;
 use InvalidArgumentException;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamInterface;

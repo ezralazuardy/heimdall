@@ -1,6 +1,6 @@
 <?php namespace Heimdall\Http;
 
-use Heimdall\Interfaces\Http\HeadersInterface;
+use Heimdall\interfaces\Http\HeadersInterface;
 use InvalidArgumentException;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\StreamInterface;
@@ -16,8 +16,8 @@ use Psr\Http\Message\StreamInterface;
  * the HTTP request and response, as defined in the PSR-7 MessageInterface.
  *
  * @link https://github.com/php-fig/http-message/blob/master/src/MessageInterface.php
- * @see \Heimdall\Http\Request
- * @see \Heimdall\Http\Response
+ * @see \Heimdall\http\Request
+ * @see \Heimdall\http\Response
  *
  * @package Heimdall\Http
  */
