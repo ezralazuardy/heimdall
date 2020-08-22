@@ -8,6 +8,7 @@ use Heimdall\Config\HeimdallAuthorizationConfig;
 use Heimdall\Config\HeimdallAuthorizationGrantType;
 use Heimdall\Config\HeimdallResourceConfig;
 use Heimdall\Exception\HeimdallConfigException;
+use Heimdall\Exception\HeimdallServerException;
 use Heimdall\http\HeimdallRequest;
 use Heimdall\http\HeimdallResponse;
 use Heimdall\interfaces\IdentityRepositoryInterface;
@@ -15,7 +16,6 @@ use Heimdall\Plugin\HeimdallAuthorizationOIDC;
 use Heimdall\Server\HeimdallAuthorizationServer;
 use Heimdall\Server\HeimdallResourceServer;
 use League\OAuth2\Server\AuthorizationValidators\AuthorizationValidatorInterface;
-use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Grant\AuthCodeGrant;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
@@ -99,38 +99,27 @@ abstract class Heimdall
 
     /**
      * @param Exception $exception
-     * @param Response $response
-     * @return Response|void
      */
-    static function handleException(Exception $exception, Response $response)
+    static function handleException(Exception $exception)
     {
-        if($exception instanceof OAuthServerException) {
+        header('Content-Type: application/json');
+        if($exception instanceof HeimdallServerException) {
+            header($_SERVER['SERVER_PROTOCOL'].' '.$exception->getHttpStatusCode().' '.$exception->getMessage());
             $error = [
-                'error' => $exception->getCode(),
-                'messages' => $exception->getMessage(),
-                'hint' => $exception->getHint()
-            ];
-            if($response !== null) {
-                $errorResponse = $response
-                    ->setContentType('application/json')
-                    ->setStatusCode($exception->getHttpStatusCode(), $exception->getMessage())
-                    ->setBody($error);
-            }
-        } else {
-            $error = [
-                'error'    => $exception->getCode(),
+                'code' => $exception->getCode(),
                 'messages' => $exception->getMessage()
             ];
-            if($response !== null) {
-                $errorResponse = $response
-                    ->setContentType('application/json')
-                    ->setStatusCode(500, 'Internal HeimdallServer Error')
-                    ->setBody($error);
-            }
+            if(!empty($exception->getHint())) $error['hint'] = $exception->getHint();
+        } else {
+            header($_SERVER['SERVER_PROTOCOL'].' 500 Internal HeimdallServer Error');
+            $error = [
+                'code'    => $exception->getCode(),
+                'messages' => $exception->getMessage()
+            ];
         }
+        http_request_body_encode($error, null);
         echo json_encode($error);
-        if($response === null) exit;
-        return $errorResponse;
+        exit;
     }
 
     /**

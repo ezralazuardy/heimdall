@@ -8,9 +8,11 @@ use Exception;
 use Heimdall\Config\HeimdallAuthorizationConfig;
 use Heimdall\Config\HeimdallAuthorizationGrantType;
 use Heimdall\Exception\HeimdallConfigException;
+use Heimdall\Exception\HeimdallServerException;
 use Heimdall\Heimdall;
 use Heimdall\Plugin\HeimdallAuthorizationOIDC;
 use League\OAuth2\Server\AuthorizationServer;
+use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\RequestTypes\AuthorizationRequest;
 use Psr\Http\Message\ResponseInterface;
 
@@ -30,14 +32,15 @@ class HeimdallAuthorizationServer
     /**
      * @param HeimdallAuthorizationConfig $config
      * @param $oidc
-     * @return HeimdallAuthorizationServer
+     * @return $this|void
      */
     private function initialize(HeimdallAuthorizationConfig $config, $oidc): HeimdallAuthorizationServer
     {
         try {
-            if(empty(getenv('encryption.key'))) throw new HeimdallConfigException(
-                'Cant\'t get encryption key from .env'
-            );
+            if(empty(getenv('encryption.key'))) $this->handleException(new HeimdallConfigException(
+                'Cant\'t get encryption key from .env.',
+                2
+            ));
             $this->server = new AuthorizationServer(
                 $config->getClientRepository(),
                 $config->getAccessTokenRepository(),
@@ -48,16 +51,16 @@ class HeimdallAuthorizationServer
             );
             return $this;
         } catch (Exception $exception) {
-            throw new HeimdallConfigException(
+            $this->handleException(new HeimdallConfigException(
                 'Error when initializing Heimdall Authorization Server, please check your configuration.',
                 $exception->getCode()
-            );
+            ));
         }
     }
 
     /**
      * @param HeimdallAuthorizationGrantType $grantType
-     * @return $this
+     * @return $this|void
      */
     private function setGrantType(HeimdallAuthorizationGrantType $grantType): HeimdallAuthorizationServer
     {
@@ -68,10 +71,10 @@ class HeimdallAuthorizationServer
             );
             return $this;
         } catch (Exception $exception) {
-            throw new HeimdallConfigException(
+            $this->handleException(new HeimdallConfigException(
                 'Error when applying Heimdall grant type, please check your configuration.',
                 $exception->getCode()
-            );
+            ));
         }
     }
 
@@ -102,14 +105,28 @@ class HeimdallAuthorizationServer
     }
 
     /**
-     * @throws Exception
+     * @return void
      */
     function validateRequestAndResponse()
     {
         if(empty($this->request))
-            throw new Exception('Server Request is undefined, please apply it via bootstrap().');
+            $this->handleException(
+                new HeimdallServerException(
+                    'Server Request is undefined, please apply it via bootstrap().',
+                    0,
+                    'heimdall_bootstrap_request_error',
+                    500
+                )
+            );
         else if(empty($this->response))
-            throw new Exception('Server Response is undefined, please apply it via bootstrap().');
+            $this->handleException(
+                new HeimdallServerException(
+                    'Server Response is undefined, please apply it via bootstrap().',
+                    1,
+                    'heimdall_bootstrap_response_error',
+                    500
+                )
+            );
     }
 
     /**
@@ -134,7 +151,7 @@ class HeimdallAuthorizationServer
 
     /**
      * @param ResponseInterface $generatedResponse
-     * @throws Exception
+     * @return Response|void
      */
     function return(ResponseInterface $generatedResponse)
     {
@@ -147,11 +164,12 @@ class HeimdallAuthorizationServer
      */
     function handleException(Exception $exception)
     {
-        Heimdall::handleException($exception, $this->response);
+        Heimdall::handleException($exception);
     }
 
     /**
      * @return AuthorizationRequest|Response|void
+     * @throws HeimdallServerException
      */
     function validateAuth()
     {
@@ -159,14 +177,21 @@ class HeimdallAuthorizationServer
             $authRequest = $this->server->validateAuthorizationRequest(Heimdall::handleRequest($this->request));
             $authRequest->setAuthorizationApproved(true);
             return $authRequest;
-        } catch (Exception $exception) {
-            Heimdall::handleException($exception, $this->response);
+        } catch (OAuthServerException $exception) {
+            throw new HeimdallServerException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception->getErrorType(),
+                $exception->getHttpStatusCode(),
+                $exception->getHint()
+            );
         }
     }
 
     /**
      * @param AuthorizationRequest $authorizationRequest
      * @return ResponseInterface|Response|void
+     * @throws HeimdallServerException
      */
     function completeAuth(AuthorizationRequest $authorizationRequest)
     {
@@ -176,12 +201,18 @@ class HeimdallAuthorizationServer
                 Heimdall::handleResponse($this->response)
             ));
         } catch (Exception $exception) {
-            Heimdall::handleException($exception, $this->response);
+            throw new HeimdallServerException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                'complete_authorization_request_error',
+                500
+            );
         }
     }
 
     /**
      * @return ResponseInterface|Response|void
+     * @throws HeimdallServerException
      */
     function createToken()
     {
@@ -190,8 +221,21 @@ class HeimdallAuthorizationServer
                 Heimdall::handleRequest($this->request),
                 Heimdall::handleResponse($this->response)
             ));
+        } catch (OAuthServerException $exception) {
+            throw new HeimdallServerException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception->getErrorType(),
+                $exception->getHttpStatusCode(),
+                $exception->getHint()
+            );
         } catch (Exception $exception) {
-            Heimdall::handleException($exception, $this->response);
+            throw new HeimdallServerException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                'respond_access_token_error',
+                500
+            );
         }
     }
 }

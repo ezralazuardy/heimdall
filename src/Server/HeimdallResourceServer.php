@@ -1,15 +1,19 @@
 <?php namespace Heimdall\Server;
 
 use CodeIgniter\HTTP\IncomingRequest;
-use CodeIgniter\HTTP\Response;
+use CodeIgniter\HTTP\RequestInterface;
 use Exception;
 use Heimdall\Config\HeimdallResourceConfig;
 use Heimdall\Exception\HeimdallConfigException;
+use Heimdall\Exception\HeimdallServerException;
 use Heimdall\Heimdall;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\ResourceServer;
-use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * Class HeimdallResourceServer
+ * @package Heimdall\Server
+ */
 class HeimdallResourceServer
 {
     /**
@@ -19,7 +23,7 @@ class HeimdallResourceServer
 
     /**
      * @param HeimdallResourceConfig $config
-     * @return $this
+     * @return $this|void
      */
     private function initialize(HeimdallResourceConfig $config): HeimdallResourceServer
     {
@@ -31,10 +35,10 @@ class HeimdallResourceServer
             );
             return $this;
         } catch(Exception $exception) {
-            throw new HeimdallConfigException(
+            $this->handleException(new HeimdallConfigException(
                 'Error when initializing Heimdall Resource Server, please check your configuration.',
                 $exception->getCode()
-            );
+            ));
         }
     }
 
@@ -48,16 +52,36 @@ class HeimdallResourceServer
     }
 
     /**
-     * @param IncomingRequest $request
-     * @param Response $response
-     * @return ServerRequestInterface|Response|void
+     * @param Exception $exception
      */
-    function validate(IncomingRequest $request, Response $response)
+    function handleException(Exception $exception)
+    {
+        Heimdall::handleException($exception);
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @throws HeimdallServerException
+     */
+    function validate(RequestInterface $request)
     {
         try {
-            $this->server->validateAuthenticatedRequest(Heimdall::handleRequest($request));
+            $this->server->validateAuthenticatedRequest(
+                Heimdall::handleRequest(
+                    new IncomingRequest(config('app'),
+                        $request->uri, $request->getBody(),
+                        $request->getUserAgent()
+                    )
+                )
+            );
         } catch (OAuthServerException $exception) {
-            Heimdall::handleException($exception, $response);
+            throw new HeimdallServerException(
+                $exception->getMessage(),
+                $exception->getCode(),
+                $exception->getErrorType(),
+                $exception->getHttpStatusCode(),
+                $exception->getHint()
+            );
         }
     }
 }

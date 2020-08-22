@@ -11,7 +11,8 @@
         "steverhoades/oauth2-openid-connect-server": "^1.2",
         "ext-json": "^7.4",
         "ext-libxml": "^7.4",
-        "ext-SimpleXML": "^7.4"
+        "ext-SimpleXML": "^7.4",
+        "ext-http": "*"
     },
     "keywords": [
         "oauth",
