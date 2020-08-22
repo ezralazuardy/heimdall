@@ -116,7 +116,6 @@ abstract class Heimdall
                 'messages' => $exception->getMessage()
             ];
         }
-        http_request_body_encode($error, null);
         echo json_encode($error);
         exit;
     }
