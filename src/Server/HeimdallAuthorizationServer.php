@@ -6,19 +6,19 @@ use CodeIgniter\HTTP\Response;
 use DateInterval;
 use Exception;
 use Heimdall\Config\HeimdallAuthorizationConfig;
-use Heimdall\Config\HeimdallAuthorizationGrantType;
+use Heimdall\Config\HeimdallAuthorizationGrant;
 use Heimdall\Exception\HeimdallConfigException;
 use Heimdall\Exception\HeimdallServerException;
 use Heimdall\Heimdall;
-use Heimdall\Plugin\HeimdallAuthorizationOIDC;
+use Heimdall\Extension\HeimdallOIDC;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\RequestTypes\AuthorizationRequest;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Class HeimdallServer
- * @package Heimdall\Src
+ * Class HeimdallAuthorizationServer
+ * @package Heimdall\Server
  */
 class HeimdallAuthorizationServer
 {
@@ -59,15 +59,15 @@ class HeimdallAuthorizationServer
     }
 
     /**
-     * @param HeimdallAuthorizationGrantType $grantType
+     * @param HeimdallAuthorizationGrant $grant
      * @return $this|void
      */
-    private function setGrantType(HeimdallAuthorizationGrantType $grantType): HeimdallAuthorizationServer
+    private function setGrantType(HeimdallAuthorizationGrant $grant): HeimdallAuthorizationServer
     {
         try {
             $this->server->enableGrantType(
-                $grantType->getGrantType(),
-                new DateInterval($grantType->getAccessTokenTTL())
+                $grant->getGrantType(),
+                new DateInterval($grant->getAccessTokenTTL())
             );
             return $this;
         } catch (Exception $exception) {
@@ -81,15 +81,15 @@ class HeimdallAuthorizationServer
     /**
      * HeimdallAuthorizationServer constructor.
      * @param HeimdallAuthorizationConfig $config
-     * @param HeimdallAuthorizationGrantType $grantType
-     * @param HeimdallAuthorizationOIDC|null $oidc
+     * @param HeimdallAuthorizationGrant $grant
+     * @param HeimdallOIDC|null $oidc
      */
     function __construct(
         HeimdallAuthorizationConfig $config,
-        HeimdallAuthorizationGrantType $grantType,
-        HeimdallAuthorizationOIDC $oidc = null
+        HeimdallAuthorizationGrant $grant,
+        HeimdallOIDC $oidc = null
     ) {
-        $this->initialize($config, $oidc)->setGrantType($grantType);
+        $this->initialize($config, $oidc)->setGrantType($grant);
     }
 
     /**

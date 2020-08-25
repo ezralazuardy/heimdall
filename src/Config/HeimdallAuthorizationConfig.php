@@ -7,8 +7,8 @@ use League\OAuth2\Server\Repositories\ScopeRepositoryInterface;
 use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
 
 /**
- * Class HeimdallConfig
- * @package Heimdall
+ * Class HeimdallAuthorizationConfig
+ * @package Heimdall\Config
  */
 class HeimdallAuthorizationConfig
 {

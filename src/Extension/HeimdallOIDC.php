@@ -1,4 +1,4 @@
-<?php namespace Heimdall\Plugin;
+<?php namespace Heimdall\Extension;
 
 use Exception;
 use Heimdall\Exception\HeimdallConfigException;
@@ -8,9 +8,9 @@ use OpenIDConnectServer\IdTokenResponse;
 
 /**
  * Class HeimdallOIDC
- * @package Heimdall
+ * @package Heimdall\Extension
  */
-class HeimdallAuthorizationOIDC
+class HeimdallOIDC
 {
     /**
      * @var IdTokenResponse

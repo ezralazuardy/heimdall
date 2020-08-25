@@ -5,14 +5,14 @@ use CodeIgniter\HTTP\Response;
 use DateInterval;
 use Exception;
 use Heimdall\Config\HeimdallAuthorizationConfig;
-use Heimdall\Config\HeimdallAuthorizationGrantType;
+use Heimdall\Config\HeimdallAuthorizationGrant;
 use Heimdall\Config\HeimdallResourceConfig;
 use Heimdall\Exception\HeimdallConfigException;
 use Heimdall\Exception\HeimdallServerException;
 use Heimdall\http\HeimdallRequest;
 use Heimdall\http\HeimdallResponse;
 use Heimdall\interfaces\IdentityRepositoryInterface;
-use Heimdall\Plugin\HeimdallAuthorizationOIDC;
+use Heimdall\Extension\HeimdallOIDC;
 use Heimdall\Server\HeimdallAuthorizationServer;
 use Heimdall\Server\HeimdallResourceServer;
 use League\OAuth2\Server\AuthorizationValidators\AuthorizationValidatorInterface;
@@ -38,19 +38,19 @@ abstract class Heimdall
 {
     /**
      * @param HeimdallAuthorizationConfig $config
-     * @param HeimdallAuthorizationGrantType $grantType
-     * @param HeimdallAuthorizationOIDC|null $oidc
+     * @param HeimdallAuthorizationGrant $grant
+     * @param HeimdallOIDC|null $oidc
      * @return HeimdallAuthorizationServer
      */
     static function initializeAuthorizationServer(
         HeimdallAuthorizationConfig $config,
-        HeimdallAuthorizationGrantType $grantType,
-        HeimdallAuthorizationOIDC $oidc = null
+        HeimdallAuthorizationGrant $grant,
+        HeimdallOIDC $oidc = null
     ): HeimdallAuthorizationServer
     {
-        switch ($grantType->getCode()) {
-            case HeimdallAuthorizationGrantType::AuthorizationCode:
-                return new HeimdallAuthorizationServer($config, $grantType, $oidc);
+        switch ($grant->getCode()) {
+            case HeimdallAuthorizationGrant::AuthorizationCode:
+                return new HeimdallAuthorizationServer($config, $grant, $oidc);
             default:
                 throw new HeimdallConfigException(
                     'Unknown Heimdall grant type, please recheck your parameter.'
@@ -180,26 +180,26 @@ abstract class Heimdall
     /**
      * @param IdentityRepositoryInterface $identityRepository
      * @param array $claimSet
-     * @return HeimdallAuthorizationOIDC
+     * @return HeimdallOIDC
      */
     static function withOIDC(
         IdentityRepositoryInterface $identityRepository, array $claimSet = []
-    ): HeimdallAuthorizationOIDC
+    ): HeimdallOIDC
     {
-        return new HeimdallAuthorizationOIDC($identityRepository, $claimSet);
+        return new HeimdallOIDC($identityRepository, $claimSet);
     }
 
     /**
      * @param string $accessTokenTTL
-     * @return HeimdallAuthorizationGrantType
+     * @return HeimdallAuthorizationGrant
      */
-    static function withClientCredentialsGrantType(
+    static function withClientCredentialsGrant(
         string $accessTokenTTL = 'PT1H'
-    ): HeimdallAuthorizationGrantType
+    ): HeimdallAuthorizationGrant
     {
         try {
-            return new HeimdallAuthorizationGrantType(
-                HeimdallAuthorizationGrantType::ClientCredentials,
+            return new HeimdallAuthorizationGrant(
+                HeimdallAuthorizationGrant::ClientCredentials,
                 new ClientCredentialsGrant(),
                 $accessTokenTTL
             );
@@ -216,20 +216,20 @@ abstract class Heimdall
      * @param RefreshTokenRepositoryInterface $refreshTokenRepository
      * @param string $refreshTokenTTL
      * @param string $accessTokenTTL
-     * @return HeimdallAuthorizationGrantType
+     * @return HeimdallAuthorizationGrant
      */
-    static function withPasswordGrantType(
+    static function withPasswordGrant(
         UserRepositoryInterface $userRepository,
         RefreshTokenRepositoryInterface $refreshTokenRepository,
         string $refreshTokenTTL = 'P1M',
         string $accessTokenTTL = 'PT1H'
-    ): HeimdallAuthorizationGrantType
+    ): HeimdallAuthorizationGrant
     {
         try {
             $passwordGrant = new PasswordGrant($userRepository, $refreshTokenRepository);
             $passwordGrant->setRefreshTokenTTL(new DateInterval($refreshTokenTTL));
-            return new HeimdallAuthorizationGrantType(
-                HeimdallAuthorizationGrantType::PasswordCredentials,
+            return new HeimdallAuthorizationGrant(
+                HeimdallAuthorizationGrant::PasswordCredentials,
                 $passwordGrant,
                 $accessTokenTTL
             );
@@ -247,21 +247,21 @@ abstract class Heimdall
      * @param string $authCodeTTL
      * @param string $refreshTokenTTL
      * @param string $accessTokenTTL
-     * @return HeimdallAuthorizationGrantType
+     * @return HeimdallAuthorizationGrant
      */
-    static function withAuthorizationGrantType(
+    static function withAuthorizationCodeGrant(
         AuthCodeRepositoryInterface $authCodeRepository,
         RefreshTokenRepositoryInterface $refreshTokenRepository,
         string $authCodeTTL = 'PT10M',
         string $refreshTokenTTL = 'P1M',
         string $accessTokenTTL = 'PT1H'
-    ): HeimdallAuthorizationGrantType
+    ): HeimdallAuthorizationGrant
     {
         try {
             $authCodeGrant = new AuthCodeGrant($authCodeRepository, $refreshTokenRepository, new DateInterval($authCodeTTL));
             $authCodeGrant->setRefreshTokenTTL(new DateInterval($refreshTokenTTL));
-            return new HeimdallAuthorizationGrantType(
-                HeimdallAuthorizationGrantType::AuthorizationCode,
+            return new HeimdallAuthorizationGrant(
+                HeimdallAuthorizationGrant::AuthorizationCode,
                 $authCodeGrant,
                 $accessTokenTTL
             );
@@ -275,15 +275,15 @@ abstract class Heimdall
 
     /**
      * @param string $accessTokenTTL
-     * @return HeimdallAuthorizationGrantType
+     * @return HeimdallAuthorizationGrant
      */
-    static function withImplicitGrantType(
+    static function withImplicitGrant(
         string $accessTokenTTL = 'PT1H'
-    ): HeimdallAuthorizationGrantType
+    ): HeimdallAuthorizationGrant
     {
         try {
-            return new HeimdallAuthorizationGrantType(
-                HeimdallAuthorizationGrantType::Implicit,
+            return new HeimdallAuthorizationGrant(
+                HeimdallAuthorizationGrant::Implicit,
                 new ImplicitGrant(new DateInterval($accessTokenTTL)),
                 $accessTokenTTL
             );
@@ -299,19 +299,19 @@ abstract class Heimdall
      * @param RefreshTokenRepositoryInterface $refreshTokenRepository
      * @param string $refreshTokenTTL
      * @param string $accessTokenTTL
-     * @return HeimdallAuthorizationGrantType
+     * @return HeimdallAuthorizationGrant
      */
-    static function withRefreshTokenGrantType(
+    static function withRefreshTokenGrant(
         RefreshTokenRepositoryInterface $refreshTokenRepository,
         string $refreshTokenTTL = 'P1M',
         string $accessTokenTTL = 'PT1H'
-    ): HeimdallAuthorizationGrantType
+    ): HeimdallAuthorizationGrant
     {
         try {
             $refreshTokenGrant = new RefreshTokenGrant($refreshTokenRepository);
             $refreshTokenGrant->setRefreshTokenTTL(new DateInterval($refreshTokenTTL));
-            return new HeimdallAuthorizationGrantType(
-                HeimdallAuthorizationGrantType::RefreshToken,
+            return new HeimdallAuthorizationGrant(
+                HeimdallAuthorizationGrant::RefreshToken,
                 $refreshTokenGrant,
                 $accessTokenTTL
             );

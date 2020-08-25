@@ -4,6 +4,10 @@ use League\OAuth2\Server\AuthorizationValidators\AuthorizationValidatorInterface
 use League\OAuth2\Server\CryptKey;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 
+/**
+ * Class HeimdallResourceConfig
+ * @package Heimdall\Config
+ */
 class HeimdallResourceConfig
 {
     /**

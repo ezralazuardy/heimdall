@@ -19,16 +19,26 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11fad23d-3b63-464a-9747-a2d99111850f" name="Default Changelist" comment="Fix exception handling bug">
+    <list default="true" id="11fad23d-3b63-464a-9747-a2d99111850f" name="Default Changelist" comment="Add support to several OAuth 2.0 grant types">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Config/HeimdallAuthorizationConfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config/HeimdallAuthorizationConfig.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Config/HeimdallAuthorizationGrantType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config/HeimdallAuthorizationGrant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Config/HeimdallResourceConfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Config/HeimdallResourceConfig.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exception/HeimdallServerException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/HeimdallServerException.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Heimdall.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Heimdall.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/Body.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/Body.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Http/RequestBody.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Http/RequestBody.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interfaces/IdentityRepositoryInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interfaces/IdentityRepositoryInterface.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Plugin/HeimdallAuthorizationOIDC.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Extension/HeimdallOIDC.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server/HeimdallAuthorizationServer.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server/HeimdallAuthorizationServer.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <executable path="composer" />
@@ -97,7 +107,9 @@
       <option name="presentableId" value="Default" />
       <updated>1597932097627</updated>
       <workItem from="1597932098811" duration="10969000" />
-      <workItem from="1598087573488" duration="20331000" />
+      <workItem from="1598087573488" duration="21160000" />
+      <workItem from="1598206378617" duration="13000" />
+      <workItem from="1598368454577" duration="759000" />
     </task>
     <task id="LOCAL-00001" summary="Format code &amp; update copyright">
       <created>1597935905436</created>
@@ -281,7 +293,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598111691750</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Add support to several OAuth 2.0 grant types">
+      <created>1598119495247</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1598119495247</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -297,6 +316,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Format code &amp; update copyright" />
@@ -313,13 +333,14 @@
     <MESSAGE value="Refactor unused code" />
     <MESSAGE value="Refactor unused code &amp; update composer.json" />
     <MESSAGE value="Fix exception handling bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix exception handling bug" />
+    <MESSAGE value="Add support to several OAuth 2.0 grant types" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add support to several OAuth 2.0 grant types" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="278" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1598093370855">
+    <state x="278" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1598369063080">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="278" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1598093370855" />
+    <state x="278" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1598369063080" />
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1598108269417">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -352,18 +373,18 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1598110568827" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1598111695510">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1598119499705">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1598111695510" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1598119499705" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597935046184">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1597935046184" />
-    <state x="478" y="116" width="579" height="592" key="find.popup" timestamp="1597935859362">
+    <state x="478" y="116" width="579" height="592" key="find.popup" timestamp="1598368726175">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="478" y="116" width="579" height="592" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1597935859362" />
+    <state x="478" y="116" width="579" height="592" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1598368726175" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1597934387073">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

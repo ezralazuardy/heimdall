@@ -3,13 +3,13 @@
 use League\OAuth2\Server\Grant\AbstractGrant;
 
 /**
- * Class HeimdallGrantType
- * @package Heimdall
+ * Class HeimdallAuthorizationGrant
+ * @package Heimdall\Config
  */
-class HeimdallAuthorizationGrantType
+class HeimdallAuthorizationGrant
 {
     /**
-     * Supported HeimdallAuthorizationGrantType
+     * Supported HeimdallAuthorizationGrant
      */
     const ClientCredentials = 0;
     const PasswordCredentials = 1;
@@ -18,21 +18,21 @@ class HeimdallAuthorizationGrantType
     const RefreshToken = 4;
 
     /**
-     * @var int $grantType,
-     * @var AbstractGrant $grantType
+     * @var int $grant,
+     * @var AbstractGrant $grant
      * @var string $accessTokenTTL
      */
-    private $grantTypeCode, $grantType, $accessTokenTTL;
+    private $grantCode, $grant, $accessTokenTTL;
 
     /**
-     * HeimdallAuthorizationGrantType constructor.
-     * @param int $grantTypeCode
-     * @param AbstractGrant $grantType
+     * HeimdallAuthorizationGrant constructor.
+     * @param int $grantCode
+     * @param AbstractGrant $grant
      * @param string $accessTokenTTL
      */
-    function __construct(int $grantTypeCode, AbstractGrant $grantType, string $accessTokenTTL) {
-        $this->grantTypeCode = $grantTypeCode;
-        $this->grantType = $grantType;
+    function __construct(int $grantCode, AbstractGrant $grant, string $accessTokenTTL) {
+        $this->grantCode = $grantCode;
+        $this->grant = $grant;
         $this->accessTokenTTL = $accessTokenTTL;
     }
 
@@ -41,7 +41,7 @@ class HeimdallAuthorizationGrantType
      */
     function getCode(): int
     {
-        return $this->grantTypeCode;
+        return $this->grantCode;
     }
 
     /**
@@ -49,7 +49,7 @@ class HeimdallAuthorizationGrantType
      */
     function getGrantType(): AbstractGrant
     {
-        return $this->grantType;
+        return $this->grant;
     }
 
     /**
