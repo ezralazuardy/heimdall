@@ -27,7 +27,8 @@ class HeimdallResourceConfig
         AccessTokenRepositoryInterface $accessTokenRepository,
         array $publicKey,
         $authorizationValidator
-    ) {
+    )
+    {
         $this->accessTokenRepository = $accessTokenRepository;
         $this->publicKey = new CryptKey(
             empty($publicKey['path']) ? null : $publicKey['path'],

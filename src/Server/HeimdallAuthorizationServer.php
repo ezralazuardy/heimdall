@@ -9,8 +9,8 @@ use Heimdall\Config\HeimdallAuthorizationConfig;
 use Heimdall\Config\HeimdallAuthorizationGrant;
 use Heimdall\Exception\HeimdallConfigException;
 use Heimdall\Exception\HeimdallServerException;
-use Heimdall\Heimdall;
 use Heimdall\Extension\HeimdallOIDC;
+use Heimdall\Heimdall;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\RequestTypes\AuthorizationRequest;
@@ -37,7 +37,7 @@ class HeimdallAuthorizationServer
     private function initialize(HeimdallAuthorizationConfig $config, $oidc): HeimdallAuthorizationServer
     {
         try {
-            if(empty(getenv('encryption.key'))) $this->handleException(new HeimdallConfigException(
+            if (empty(getenv('encryption.key'))) $this->handleException(new HeimdallConfigException(
                 'Cant\'t get encryption key from .env.',
                 2
             ));
@@ -88,7 +88,8 @@ class HeimdallAuthorizationServer
         HeimdallAuthorizationConfig $config,
         HeimdallAuthorizationGrant $grant,
         HeimdallOIDC $oidc = null
-    ) {
+    )
+    {
         $this->initialize($config, $oidc)->setGrantType($grant);
     }
 
@@ -109,7 +110,7 @@ class HeimdallAuthorizationServer
      */
     function validateRequestAndResponse()
     {
-        if(empty($this->request))
+        if (empty($this->request))
             $this->handleException(
                 new HeimdallServerException(
                     'Server Request is undefined, please apply it via bootstrap().',
@@ -118,7 +119,7 @@ class HeimdallAuthorizationServer
                     500
                 )
             );
-        else if(empty($this->response))
+        else if (empty($this->response))
             $this->handleException(
                 new HeimdallServerException(
                     'Server Response is undefined, please apply it via bootstrap().',

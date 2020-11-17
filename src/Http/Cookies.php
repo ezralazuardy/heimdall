@@ -1,6 +1,6 @@
 <?php namespace Heimdall\Http;
 
-use Heimdall\interfaces\Http\CookiesInterface;
+use Heimdall\Interfaces\Http\CookiesInterface;
 use InvalidArgumentException;
 
 /**

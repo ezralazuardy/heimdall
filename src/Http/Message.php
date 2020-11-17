@@ -1,6 +1,6 @@
 <?php namespace Heimdall\Http;
 
-use Heimdall\interfaces\Http\HeadersInterface;
+use Heimdall\Interfaces\Http\HeadersInterface;
 use InvalidArgumentException;
 use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\StreamInterface;

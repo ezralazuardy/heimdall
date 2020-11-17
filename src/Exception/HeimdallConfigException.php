@@ -6,4 +6,6 @@ use InvalidArgumentException;
  * Class HeimdallConfigException
  * @package Heimdall\Exception
  */
-class HeimdallConfigException extends InvalidArgumentException { }
+class HeimdallConfigException extends InvalidArgumentException
+{
+}

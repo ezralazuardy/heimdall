@@ -2,7 +2,7 @@
 
 use Exception;
 use Heimdall\Exception\HeimdallConfigException;
-use Heimdall\interfaces\IdentityRepositoryInterface;
+use Heimdall\Interfaces\IdentityRepositoryInterface;
 use OpenIDConnectServer\ClaimExtractor;
 use OpenIDConnectServer\IdTokenResponse;
 

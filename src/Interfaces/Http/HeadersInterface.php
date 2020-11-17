@@ -19,7 +19,7 @@ interface HeadersInterface extends CollectionInterface
      * this method _appends_ this new value to any values
      * that already exist for this header name.
      *
-     * @param string          $key   The case-insensitive header name
+     * @param string $key The case-insensitive header name
      * @param string|string[] $value The new header value(s)
      */
     public function add($key, $value);
@@ -31,7 +31,7 @@ interface HeadersInterface extends CollectionInterface
      * normalized form. This is how we enable case-insensitive
      * header names in the other methods in this class.
      *
-     * @param  string $key The case-insensitive header name
+     * @param string $key The case-insensitive header name
      *
      * @return string Normalized header name
      */

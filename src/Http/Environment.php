@@ -1,6 +1,6 @@
 <?php namespace Heimdall\Http;
 
-use Heimdall\interfaces\Http\EnvironmentInterface;
+use Heimdall\Interfaces\Http\EnvironmentInterface;
 
 /**
  * Part of Slim Framework (https://slimframework.com)

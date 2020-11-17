@@ -18,7 +18,7 @@ class HeimdallAuthorizationGrant
     const RefreshToken = 4;
 
     /**
-     * @var int $grant,
+     * @var int $grant ,
      * @var AbstractGrant $grant
      * @var string $accessTokenTTL
      */
@@ -30,7 +30,8 @@ class HeimdallAuthorizationGrant
      * @param AbstractGrant $grant
      * @param string $accessTokenTTL
      */
-    function __construct(int $grantCode, AbstractGrant $grant, string $accessTokenTTL) {
+    function __construct(int $grantCode, AbstractGrant $grant, string $accessTokenTTL)
+    {
         $this->grantCode = $grantCode;
         $this->grant = $grant;
         $this->accessTokenTTL = $accessTokenTTL;

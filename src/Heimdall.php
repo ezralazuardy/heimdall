@@ -9,10 +9,10 @@ use Heimdall\Config\HeimdallAuthorizationGrant;
 use Heimdall\Config\HeimdallResourceConfig;
 use Heimdall\Exception\HeimdallConfigException;
 use Heimdall\Exception\HeimdallServerException;
-use Heimdall\http\HeimdallRequest;
-use Heimdall\http\HeimdallResponse;
-use Heimdall\interfaces\IdentityRepositoryInterface;
 use Heimdall\Extension\HeimdallOIDC;
+use Heimdall\Http\HeimdallRequest;
+use Heimdall\Http\HeimdallResponse;
+use Heimdall\interfaces\IdentityRepositoryInterface;
 use Heimdall\Server\HeimdallAuthorizationServer;
 use Heimdall\Server\HeimdallResourceServer;
 use League\OAuth2\Server\AuthorizationValidators\AuthorizationValidatorInterface;
@@ -107,17 +107,17 @@ abstract class Heimdall
     static function handleException(Exception $exception)
     {
         header('Content-Type: application/json');
-        if($exception instanceof HeimdallServerException) {
-            header($_SERVER['SERVER_PROTOCOL'].' '.$exception->getHttpStatusCode().' '.$exception->getMessage());
+        if ($exception instanceof HeimdallServerException) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' ' . $exception->getHttpStatusCode() . ' ' . $exception->getMessage());
             $error = [
                 'code' => $exception->getCode(),
                 'messages' => $exception->getMessage()
             ];
-            if(!empty($exception->getHint())) $error['hint'] = $exception->getHint();
+            if (!empty($exception->getHint())) $error['hint'] = $exception->getHint();
         } else {
-            header($_SERVER['SERVER_PROTOCOL'].' 500 Internal HeimdallServer Error');
+            header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal HeimdallServer Error');
             $error = [
-                'code'    => $exception->getCode(),
+                'code' => $exception->getCode(),
                 'messages' => $exception->getMessage()
             ];
         }
@@ -155,7 +155,7 @@ abstract class Heimdall
         ResponseTypeInterface $responseType = null
     ): HeimdallAuthorizationConfig
     {
-        if(is_string($privateKey)) $privateKey = ['path' => $privateKey];
+        if (is_string($privateKey)) $privateKey = ['path' => $privateKey];
         return new HeimdallAuthorizationConfig(
             $clientRepository, $accessTokenRepository, $scopeRepository, $privateKey, $responseType
         );
@@ -173,7 +173,7 @@ abstract class Heimdall
         AuthorizationValidatorInterface $authorizationValidator = null
     ): HeimdallResourceConfig
     {
-        if(is_string($publicKey)) $publicKey = ['path' => $publicKey];
+        if (is_string($publicKey)) $publicKey = ['path' => $publicKey];
         return new HeimdallResourceConfig($accessTokenRepository, $publicKey, $authorizationValidator);
     }
 

@@ -8,4 +8,6 @@
  * Class Body
  * @package Heimdall\Http
  */
-class Body extends Stream { }
+class Body extends Stream
+{
+}

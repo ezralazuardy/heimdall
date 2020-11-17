@@ -1,6 +1,6 @@
 <?php namespace Heimdall\Http;
 
-use Heimdall\interfaces\Http\HeadersInterface;
+use Heimdall\Interfaces\Http\HeadersInterface;
 
 /**
  * Part of Slim Framework (https://slimframework.com)

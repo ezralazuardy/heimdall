@@ -6,4 +6,6 @@ use OpenIDConnectServer\Repositories\IdentityProviderInterface;
  * Interface IdentityRepositoryInterface
  * @package Heimdall\Interfaces
  */
-interface IdentityRepositoryInterface extends IdentityProviderInterface { }
+interface IdentityRepositoryInterface extends IdentityProviderInterface
+{
+}

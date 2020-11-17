@@ -34,7 +34,7 @@ class HeimdallResourceServer
                 $config->getAuthorizationValidator()
             );
             return $this;
-        } catch(Exception $exception) {
+        } catch (Exception $exception) {
             $this->handleException(new HeimdallConfigException(
                 'Error when initializing Heimdall Resource Server, please check your configuration.',
                 $exception->getCode()

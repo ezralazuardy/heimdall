@@ -15,8 +15,8 @@ interface CookiesInterface
     /**
      * Get request cookie
      *
-     * @param  string $name    Cookie name
-     * @param  mixed  $default Cookie default value
+     * @param string $name Cookie name
+     * @param mixed $default Cookie default value
      *
      * @return mixed Cookie value if present, else default
      */
@@ -25,7 +25,7 @@ interface CookiesInterface
     /**
      * Set response cookie
      *
-     * @param string       $name  Cookie name
+     * @param string $name Cookie name
      * @param string|array $value Cookie value, or cookie properties
      */
     public function set($name, $value);
@@ -40,7 +40,7 @@ interface CookiesInterface
     /**
      * Parse HTTP request `Cookie:` header and extract into a PHP associative array.
      *
-     * @param  string $header The raw HTTP request `Cookie:` header
+     * @param string $header The raw HTTP request `Cookie:` header
      *
      * @return array Associative array of cookie names and values
      *

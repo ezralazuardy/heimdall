@@ -13,7 +13,7 @@ interface EnvironmentInterface
     /**
      * Create mock environment
      *
-     * @param  array $settings Array of custom environment keys and values
+     * @param array $settings Array of custom environment keys and values
      *
      * @return static
      */

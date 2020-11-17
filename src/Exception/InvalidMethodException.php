@@ -20,7 +20,7 @@ class InvalidMethodException extends InvalidArgumentException
 
     /**
      * @param ServerRequestInterface $request
-     * @param string                 $method
+     * @param string $method
      */
     public function __construct(ServerRequestInterface $request, $method)
     {

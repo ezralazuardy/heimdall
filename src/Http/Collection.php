@@ -1,7 +1,7 @@
 <?php namespace Heimdall\Http;
 
 use ArrayIterator;
-use Heimdall\interfaces\CollectionInterface;
+use Heimdall\Interfaces\CollectionInterface;
 
 /**
  * Part of Slim Framework (https://slimframework.com)

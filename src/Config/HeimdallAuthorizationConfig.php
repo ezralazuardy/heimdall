@@ -35,7 +35,8 @@ class HeimdallAuthorizationConfig
         ScopeRepositoryInterface $scopeRepository,
         $privateKey,
         $responseType
-    ) {
+    )
+    {
         $this->clientRepository = $clientRepository;
         $this->accessTokenRepository = $accessTokenRepository;
         $this->scopeRepository = $scopeRepository;
