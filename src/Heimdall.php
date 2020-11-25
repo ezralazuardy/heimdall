@@ -49,6 +49,7 @@ abstract class Heimdall
     ): HeimdallAuthorizationServer
     {
         switch ($grant->getCode()) {
+            case HeimdallAuthorizationGrant::ClientCredentials:
             case HeimdallAuthorizationGrant::AuthorizationCode:
                 return new HeimdallAuthorizationServer($config, $grant, $oidc);
             default:
