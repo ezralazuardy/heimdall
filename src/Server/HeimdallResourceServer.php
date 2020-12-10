@@ -66,7 +66,7 @@ class HeimdallResourceServer
     function validate(RequestInterface $request)
     {
         try {
-            $this->server->validateAuthenticatedRequest(
+            return $this->server->validateAuthenticatedRequest(
                 Heimdall::handleRequest(
                     new IncomingRequest(config('app'),
                         $request->uri, $request->getBody(),
