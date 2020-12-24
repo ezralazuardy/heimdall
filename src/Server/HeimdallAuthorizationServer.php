@@ -1,4 +1,6 @@
-<?php namespace Heimdall\Server;
+<?php
+
+namespace Heimdall\Server;
 
 use CodeIgniter\API\ResponseTrait;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -154,7 +156,7 @@ class HeimdallAuthorizationServer
      * @param ResponseInterface $generatedResponse
      * @return Response|void
      */
-    function return(ResponseInterface $generatedResponse)
+    function return(ResponseInterface $generatedResponse): Response
     {
         $this->validateRequestAndResponse();
         Heimdall::return($generatedResponse, $this->response);

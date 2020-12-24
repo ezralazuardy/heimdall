@@ -44,7 +44,7 @@ interface CollectionInterface extends ArrayAccess, Countable, IteratorAggregate
      *
      * @return array The collection's source data
      */
-    public function all();
+    public function all(): array;
 
     /**
      * Does this collection have a given key?
@@ -53,7 +53,7 @@ interface CollectionInterface extends ArrayAccess, Countable, IteratorAggregate
      *
      * @return bool
      */
-    public function has($key);
+    public function has($key): bool;
 
     /**
      * Remove item from collection

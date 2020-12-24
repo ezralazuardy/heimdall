@@ -35,7 +35,7 @@ interface CookiesInterface
      *
      * @return string[]
      */
-    public function toHeaders();
+    public function toHeaders(): array;
 
     /**
      * Parse HTTP request `Cookie:` header and extract into a PHP associative array.
@@ -46,5 +46,5 @@ interface CookiesInterface
      *
      * @throws InvalidArgumentException if the cookie data cannot be parsed
      */
-    public static function parseHeader($header);
+    public static function parseHeader($header): array;
 }

@@ -63,7 +63,7 @@ abstract class Message implements MessageInterface
      *
      * @return string
      */
-    public function getProtocolVersion()
+    public function getProtocolVersion(): string
     {
         return $this->protocolVersion;
     }
@@ -84,7 +84,7 @@ abstract class Message implements MessageInterface
      *
      * @throws InvalidArgumentException if the http version is an invalid number
      */
-    public function withProtocolVersion($version)
+    public function withProtocolVersion($version): Message
     {
         if (!isset(self::$validProtocolVersions[$version])) {
             throw new InvalidArgumentException(
@@ -124,7 +124,7 @@ abstract class Message implements MessageInterface
      *
      * @return array
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->headers->all();
     }
@@ -139,7 +139,7 @@ abstract class Message implements MessageInterface
      *
      * @return bool
      */
-    public function hasHeader($name)
+    public function hasHeader($name): bool
     {
         return $this->headers->has($name);
     }
@@ -157,7 +157,7 @@ abstract class Message implements MessageInterface
      *
      * @return string[]
      */
-    public function getHeader($name)
+    public function getHeader($name): array
     {
         return $this->headers->get($name, []);
     }
@@ -177,7 +177,7 @@ abstract class Message implements MessageInterface
      *
      * @return static
      */
-    public function withHeader($name, $value)
+    public function withHeader($name, $value): Message
     {
         $clone = clone $this;
         $clone->headers->set($name, $value);
@@ -201,7 +201,7 @@ abstract class Message implements MessageInterface
      *
      * @return static
      */
-    public function withAddedHeader($name, $value)
+    public function withAddedHeader($name, $value): Message
     {
         $clone = clone $this;
         $clone->headers->add($name, $value);
@@ -231,7 +231,7 @@ abstract class Message implements MessageInterface
      *
      * @return string
      */
-    public function getHeaderLine($name)
+    public function getHeaderLine($name): string
     {
         return implode(',', $this->headers->get($name, []));
     }
@@ -249,7 +249,7 @@ abstract class Message implements MessageInterface
      *
      * @return static
      */
-    public function withoutHeader($name)
+    public function withoutHeader($name): Message
     {
         $clone = clone $this;
         $clone->headers->remove($name);
@@ -266,7 +266,7 @@ abstract class Message implements MessageInterface
      *
      * @return StreamInterface Returns the body as a stream.
      */
-    public function getBody()
+    public function getBody(): StreamInterface
     {
         return $this->body;
     }
@@ -284,7 +284,7 @@ abstract class Message implements MessageInterface
      *
      * @return static
      */
-    public function withBody(StreamInterface $body)
+    public function withBody(StreamInterface $body): Message
     {
         $clone = clone $this;
         $clone->body = $body;

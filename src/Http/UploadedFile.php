@@ -104,14 +104,13 @@ class UploadedFile implements UploadedFileInterface
      *
      * @return array|null
      */
-    public static function createFromEnvironment(Environment $env)
+    public static function createFromEnvironment(Environment $env): ?array
     {
         if (is_array($env['slim.files']) && $env->has('slim.files')) {
             return $env['slim.files'];
         } elseif (!empty($_FILES)) {
             return static::parseUploadedFiles($_FILES);
         }
-
         return [];
     }
 
@@ -124,17 +123,14 @@ class UploadedFile implements UploadedFileInterface
      *
      * @return array
      */
-    private static function parseUploadedFiles(array $uploadedFiles)
+    private static function parseUploadedFiles(array $uploadedFiles): array
     {
         $parsed = [];
         foreach ($uploadedFiles as $field => $uploadedFile) {
             if (!isset($uploadedFile['error'])) {
-                if (is_array($uploadedFile)) {
-                    $parsed[$field] = static::parseUploadedFiles($uploadedFile);
-                }
+                if (is_array($uploadedFile)) $parsed[$field] = static::parseUploadedFiles($uploadedFile);
                 continue;
             }
-
             $parsed[$field] = [];
             if (!is_array($uploadedFile['error'])) {
                 $parsed[$field] = new static(
@@ -159,7 +155,6 @@ class UploadedFile implements UploadedFileInterface
                 }
             }
         }
-
         return $parsed;
     }
 
@@ -274,7 +269,7 @@ class UploadedFile implements UploadedFileInterface
      *
      * @return int
      */
-    public function getError()
+    public function getError(): int
     {
         return $this->error;
     }
@@ -291,7 +286,7 @@ class UploadedFile implements UploadedFileInterface
      *
      * @return string|null
      */
-    public function getClientFilename()
+    public function getClientFilename(): ?string
     {
         return $this->name;
     }
@@ -308,7 +303,7 @@ class UploadedFile implements UploadedFileInterface
      *
      * @return string|null
      */
-    public function getClientMediaType()
+    public function getClientMediaType(): ?string
     {
         return $this->type;
     }
@@ -322,7 +317,7 @@ class UploadedFile implements UploadedFileInterface
      *
      * @return int|null
      */
-    public function getSize()
+    public function getSize(): ?int
     {
         return $this->size;
     }

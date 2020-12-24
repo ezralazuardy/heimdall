@@ -54,7 +54,7 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function all()
+    public function all(): array
     {
         return $this->data;
     }
@@ -64,7 +64,7 @@ class Collection implements CollectionInterface
      *
      * @return array The collection's source data keys
      */
-    public function keys()
+    public function keys(): array
     {
         return array_keys($this->data);
     }
@@ -83,8 +83,9 @@ class Collection implements CollectionInterface
      * @param string $key The data key
      *
      * @return bool
+     * @noinspection PhpParameterNameChangedDuringInheritanceInspection
      */
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
         return $this->has($key);
     }
@@ -92,7 +93,7 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function has($key)
+    public function has($key): bool
     {
         return array_key_exists($key, $this->data);
     }
@@ -103,6 +104,7 @@ class Collection implements CollectionInterface
      * @param string $key The data key
      *
      * @return mixed The key's value, or the default value
+     * @noinspection PhpParameterNameChangedDuringInheritanceInspection
      */
     public function offsetGet($key)
     {
@@ -122,6 +124,7 @@ class Collection implements CollectionInterface
      *
      * @param string $key The data key
      * @param mixed $value The data value
+     * @noinspection PhpParameterNameChangedDuringInheritanceInspection
      */
     public function offsetSet($key, $value)
     {
@@ -132,6 +135,7 @@ class Collection implements CollectionInterface
      * Remove item from collection
      *
      * @param string $key The data key
+     * @noinspection PhpParameterNameChangedDuringInheritanceInspection
      */
     public function offsetUnset($key)
     {
@@ -151,7 +155,7 @@ class Collection implements CollectionInterface
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->data);
     }
@@ -161,7 +165,7 @@ class Collection implements CollectionInterface
      *
      * @return ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): ArrayIterator
     {
         return new ArrayIterator($this->data);
     }

@@ -42,7 +42,7 @@ class Headers extends Collection implements HeadersInterface
      *
      * @return self
      */
-    public static function createFromEnvironment(Environment $environment)
+    public static function createFromEnvironment(Environment $environment): Headers
     {
         $data = [];
         $environment = self::determineAuthorization($environment);
@@ -66,7 +66,7 @@ class Headers extends Collection implements HeadersInterface
      * @return Environment
      */
 
-    public static function determineAuthorization(Environment $environment)
+    public static function determineAuthorization(Environment $environment): Environment
     {
         $authorization = $environment->get('HTTP_AUTHORIZATION');
         if (!empty($authorization) || !is_callable('getallheaders')) {
@@ -92,14 +92,13 @@ class Headers extends Collection implements HeadersInterface
      *
      * @return array
      */
-    public function all()
+    public function all(): array
     {
         $all = parent::all();
         $out = [];
         foreach ($all as $key => $props) {
             $out[$props['originalKey']] = $props['value'];
         }
-
         return $out;
     }
 
@@ -111,7 +110,7 @@ class Headers extends Collection implements HeadersInterface
      *
      * @return string
      */
-    public function getOriginalKey($key, $default = null)
+    public function getOriginalKey($key, $default = null): string
     {
         if ($this->has($key)) {
             return parent::get($this->normalizeKey($key))['originalKey'];
@@ -127,7 +126,7 @@ class Headers extends Collection implements HeadersInterface
      *
      * @return bool
      */
-    public function has($key)
+    public function has($key): bool
     {
         return parent::has($this->normalizeKey($key));
     }
@@ -163,7 +162,7 @@ class Headers extends Collection implements HeadersInterface
      *
      * @return string[]
      */
-    public function get($key, $default = null)
+    public function get($key, $default = null): array
     {
         if ($this->has($key)) {
             return parent::get($this->normalizeKey($key))['value'];

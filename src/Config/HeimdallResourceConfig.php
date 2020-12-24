@@ -26,7 +26,7 @@ class HeimdallResourceConfig
     function __construct(
         AccessTokenRepositoryInterface $accessTokenRepository,
         array $publicKey,
-        $authorizationValidator
+        ?AuthorizationValidatorInterface $authorizationValidator
     )
     {
         $this->accessTokenRepository = $accessTokenRepository;

@@ -17,5 +17,5 @@ interface EnvironmentInterface
      *
      * @return static
      */
-    public static function mock(array $settings = []);
+    public static function mock(array $settings = []): EnvironmentInterface;
 }

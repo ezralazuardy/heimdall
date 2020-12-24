@@ -123,7 +123,7 @@ class Stream implements StreamInterface
      *
      * @return bool
      */
-    protected function isAttached()
+    protected function isAttached(): bool
     {
         return is_resource($this->stream);
     }
@@ -145,7 +145,6 @@ class Stream implements StreamInterface
         $this->seekable = null;
         $this->size = null;
         $this->isPipe = null;
-
         return $oldResource;
     }
 
@@ -164,12 +163,11 @@ class Stream implements StreamInterface
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         if (!$this->isAttached()) {
             return '';
         }
-
         try {
             $this->rewind();
             return $this->getContents();
@@ -202,7 +200,7 @@ class Stream implements StreamInterface
      *
      * @return bool
      */
-    public function isSeekable()
+    public function isSeekable(): bool
     {
         if ($this->seekable === null) {
             $this->seekable = false;
@@ -211,7 +209,6 @@ class Stream implements StreamInterface
                 $this->seekable = !$this->isPipe() && $meta['seekable'];
             }
         }
-
         return $this->seekable;
     }
 
@@ -228,13 +225,12 @@ class Stream implements StreamInterface
      *     provided. Returns a specific key value if a key is provided and the
      *     value is found, or null if the key is not found.
      */
-    public function getMetadata($key = null)
+    public function getMetadata($key = null): ?array
     {
         $this->meta = stream_get_meta_data($this->stream);
         if (is_null($key) === true) {
             return $this->meta;
         }
-
         return isset($this->meta[$key]) ? $this->meta[$key] : null;
     }
 
@@ -243,7 +239,7 @@ class Stream implements StreamInterface
      *
      * @return bool
      */
-    public function isPipe()
+    public function isPipe(): bool
     {
         if ($this->isPipe === null) {
             $this->isPipe = false;
@@ -252,7 +248,6 @@ class Stream implements StreamInterface
                 $this->isPipe = ($mode & self::FSTAT_MODE_S_IFIFO) !== 0;
             }
         }
-
         return $this->isPipe;
     }
 
@@ -263,12 +258,11 @@ class Stream implements StreamInterface
      *
      * @throws RuntimeException If stream is not readable
      */
-    public function getContents()
+    public function getContents(): string
     {
         if (!$this->isReadable() || ($contents = stream_get_contents($this->stream)) === false) {
             throw new RuntimeException('Could not get contents of stream');
         }
-
         return $contents;
     }
 
@@ -277,7 +271,7 @@ class Stream implements StreamInterface
      *
      * @return bool
      */
-    public function isReadable()
+    public function isReadable(): bool
     {
         if ($this->readable === null) {
             if ($this->isPipe()) {
@@ -295,7 +289,6 @@ class Stream implements StreamInterface
                 }
             }
         }
-
         return $this->readable;
     }
 
@@ -320,13 +313,12 @@ class Stream implements StreamInterface
      *
      * @return int|null Returns the size in bytes if known, or null if unknown.
      */
-    public function getSize()
+    public function getSize(): ?int
     {
         if (!$this->size && $this->isAttached() === true) {
             $stats = fstat($this->stream);
             $this->size = isset($stats['size']) && !$this->isPipe() ? $stats['size'] : null;
         }
-
         return $this->size;
     }
 
@@ -337,12 +329,11 @@ class Stream implements StreamInterface
      *
      * @throws RuntimeException on error.
      */
-    public function tell()
+    public function tell(): int
     {
         if (!$this->isAttached() || ($position = ftell($this->stream)) === false || $this->isPipe()) {
             throw new RuntimeException('Could not get the position of the pointer in stream');
         }
-
         return $position;
     }
 
@@ -351,7 +342,7 @@ class Stream implements StreamInterface
      *
      * @return bool
      */
-    public function eof()
+    public function eof(): bool
     {
         return $this->isAttached() ? feof($this->stream) : true;
     }
@@ -389,12 +380,11 @@ class Stream implements StreamInterface
      *
      * @throws RuntimeException if an error occurs.
      */
-    public function read($length)
+    public function read($length): string
     {
         if (!$this->isReadable() || ($data = fread($this->stream, $length)) === false) {
             throw new RuntimeException('Could not read from stream');
         }
-
         return $data;
     }
 
@@ -407,15 +397,13 @@ class Stream implements StreamInterface
      *
      * @throws RuntimeException If stream is not writable
      */
-    public function write($string)
+    public function write($string): int
     {
         if (!$this->isWritable() || ($written = fwrite($this->stream, $string)) === false) {
             throw new RuntimeException('Could not write to stream');
         }
-
         // reset size so that it will be recalculated on next call to getSize()
         $this->size = null;
-
         return $written;
     }
 
@@ -424,7 +412,7 @@ class Stream implements StreamInterface
      *
      * @return bool
      */
-    public function isWritable()
+    public function isWritable(): bool
     {
         if ($this->writable === null) {
             $this->writable = false;
@@ -438,7 +426,6 @@ class Stream implements StreamInterface
                 }
             }
         }
-
         return $this->writable;
     }
 }

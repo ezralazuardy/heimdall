@@ -134,23 +134,20 @@ class Uri implements UriInterface
      * @throws InvalidArgumentException If the Uri scheme is not a string.
      * @throws InvalidArgumentException If Uri scheme is not "", "https", or "http".
      */
-    protected function filterScheme($scheme)
+    protected function filterScheme($scheme): string
     {
         static $valid = [
             '' => true,
             'https' => true,
             'http' => true,
         ];
-
         if (!is_string($scheme) && !method_exists($scheme, '__toString')) {
             throw new InvalidArgumentException('Uri scheme must be a string');
         }
-
         $scheme = str_replace('://', '', strtolower((string)$scheme));
         if (!isset($valid[$scheme])) {
             throw new InvalidArgumentException('Uri scheme must be one of: "", "https", "http"');
         }
-
         return $scheme;
     }
 
@@ -162,12 +159,11 @@ class Uri implements UriInterface
      *
      * @throws InvalidArgumentException If the port is invalid.
      */
-    protected function filterPort($port)
+    protected function filterPort($port): ?int
     {
         if (is_null($port) || (is_integer($port) && ($port >= 1 && $port <= 65535))) {
             return $port;
         }
-
         throw new InvalidArgumentException('Uri port must be null or an integer between 1 and 65535 (inclusive)');
     }
 
@@ -187,7 +183,7 @@ class Uri implements UriInterface
      *
      * @link   http://www.faqs.org/rfcs/rfc3986.html
      */
-    protected function filterPath($path)
+    protected function filterPath($path): string
     {
         return preg_replace_callback(
             '/(?:[^a-zA-Z0-9_\-.~:@&=+,\/;%]+|%(?![A-Fa-f0-9]{2}))/',
@@ -205,7 +201,7 @@ class Uri implements UriInterface
      *
      * @return string The percent-encoded query string.
      */
-    protected function filterQuery($query)
+    protected function filterQuery($query): string
     {
         return preg_replace_callback(
             '/(?:[^a-zA-Z0-9_\-.~!\$&\'()*+,;=%:@\/?]+|%(?![A-Fa-f0-9]{2}))/',
@@ -223,7 +219,7 @@ class Uri implements UriInterface
      *
      * @return self
      */
-    public static function createFromEnvironment(Environment $env)
+    public static function createFromEnvironment(Environment $env): Uri
     {
         // Scheme
         $isSecure = $env->get('HTTPS');
@@ -243,10 +239,8 @@ class Uri implements UriInterface
             // set a port default
             $port = (int)$env->get('SERVER_PORT', 80);
         }
-
         if (preg_match('/^(\[[a-fA-F0-9:.]+])(:\d+)?\z/', $host, $matches)) {
             $host = $matches[1];
-
             if (isset($matches[2])) {
                 $port = (int)substr($matches[2], 1);
             }
@@ -265,7 +259,6 @@ class Uri implements UriInterface
         // parse_url() requires a full URL. As we don't extract the domain name or scheme,
         // we use a stand-in.
         $requestUri = (string)parse_url('http://example.com' . $env->get('REQUEST_URI'), PHP_URL_PATH);
-
         $basePath = '';
         $virtualPath = $requestUri;
         if (stripos($requestUri, $requestScriptName) === 0) {
@@ -273,7 +266,6 @@ class Uri implements UriInterface
         } elseif ($requestScriptDir !== '/' && stripos($requestUri, $requestScriptDir) === 0) {
             $basePath = $requestScriptDir;
         }
-
         if ($basePath) {
             $virtualPath = ltrim(substr($requestUri, strlen($basePath)), '/');
         }
@@ -305,7 +297,7 @@ class Uri implements UriInterface
      *
      * @return static
      */
-    public function withBasePath($basePath)
+    public function withBasePath($basePath): Uri
     {
         if (!is_string($basePath)) {
             throw new InvalidArgumentException('Uri path must be a string');
@@ -314,11 +306,9 @@ class Uri implements UriInterface
             $basePath = '/' . trim($basePath, '/'); // <-- Trim on both sides
         }
         $clone = clone $this;
-
         if ($basePath !== '/') {
             $clone->basePath = $this->filterPath($basePath);
         }
-
         return $clone;
     }
 
@@ -339,12 +329,11 @@ class Uri implements UriInterface
      *
      * @throws InvalidArgumentException for invalid or unsupported schemes.
      */
-    public function withScheme($scheme)
+    public function withScheme($scheme): Uri
     {
         $scheme = $this->filterScheme($scheme);
         $clone = clone $this;
         $clone->scheme = $scheme;
-
         return $clone;
     }
 
@@ -363,7 +352,7 @@ class Uri implements UriInterface
      *
      * @return self A new instance with the specified user information.
      */
-    public function withUserInfo($user, $password = null)
+    public function withUserInfo($user, $password = null): Uri
     {
         $clone = clone $this;
         $clone->user = $this->filterUserInfo($user);
@@ -372,7 +361,6 @@ class Uri implements UriInterface
         } else {
             $clone->password = '';
         }
-
         return $clone;
     }
 
@@ -383,7 +371,7 @@ class Uri implements UriInterface
      *
      * @return string The percent-encoded query string.
      */
-    protected function filterUserInfo($query)
+    protected function filterUserInfo($query): string
     {
         return preg_replace_callback(
             '/(?:[^a-zA-Z0-9_\-.~!\$&\'()*+,;=]+|%(?![A-Fa-f0-9]{2}))/u',
@@ -406,7 +394,7 @@ class Uri implements UriInterface
      *
      * @return self A new instance with the specified host.
      */
-    public function withHost($host)
+    public function withHost($host): Uri
     {
         $clone = clone $this;
         $clone->host = $host;
@@ -431,7 +419,7 @@ class Uri implements UriInterface
      *
      * @return self A new instance with the specified port.
      */
-    public function withPort($port)
+    public function withPort($port): Uri
     {
         $port = $this->filterPort($port);
         $clone = clone $this;
@@ -463,12 +451,11 @@ class Uri implements UriInterface
      *
      * @throws InvalidArgumentException For invalid paths.
      */
-    public function withPath($path)
+    public function withPath($path): Uri
     {
         if (!is_string($path)) {
             throw new InvalidArgumentException('Uri path must be a string');
         }
-
         $clone = clone $this;
         $clone->path = $this->filterPath($path);
 
@@ -497,7 +484,7 @@ class Uri implements UriInterface
      *
      * @throws InvalidArgumentException For invalid query strings.
      */
-    public function withQuery($query)
+    public function withQuery($query): Uri
     {
         if (!is_string($query) && !method_exists($query, '__toString')) {
             throw new InvalidArgumentException('Uri query must be a string');
@@ -505,7 +492,6 @@ class Uri implements UriInterface
         $query = ltrim((string)$query, '?');
         $clone = clone $this;
         $clone->query = $this->filterQuery($query);
-
         return $clone;
     }
 
@@ -524,7 +510,7 @@ class Uri implements UriInterface
      *
      * @return static A new instance with the specified fragment.
      */
-    public function withFragment($fragment)
+    public function withFragment($fragment): Uri
     {
         if (!is_string($fragment) && !method_exists($fragment, '__toString')) {
             throw new InvalidArgumentException('Uri fragment must be a string');
@@ -532,7 +518,6 @@ class Uri implements UriInterface
         $fragment = ltrim((string)$fragment, '#');
         $clone = clone $this;
         $clone->fragment = $this->filterQuery($fragment);
-
         return $clone;
     }
 
@@ -560,7 +545,7 @@ class Uri implements UriInterface
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         $scheme = $this->getScheme();
         $authority = $this->getAuthority();
@@ -568,9 +553,7 @@ class Uri implements UriInterface
         $path = $this->getPath();
         $query = $this->getQuery();
         $fragment = $this->getFragment();
-
         $path = $basePath . '/' . ltrim($path, '/');
-
         return ($scheme !== '' ? $scheme . ':' : '')
             . ($authority !== '' ? '//' . $authority : '')
             . $path
@@ -593,7 +576,7 @@ class Uri implements UriInterface
      *
      * @return string The URI scheme.
      */
-    public function getScheme()
+    public function getScheme(): string
     {
         return $this->scheme;
     }
@@ -617,12 +600,11 @@ class Uri implements UriInterface
      *
      * @return string The URI authority, in "[user-info@]host[:port]" format.
      */
-    public function getAuthority()
+    public function getAuthority(): string
     {
         $userInfo = $this->getUserInfo();
         $host = $this->getHost();
         $port = $this->getPort();
-
         return ($userInfo !== '' ? $userInfo . '@' : '') . $host . ($port !== null ? ':' . $port : '');
     }
 
@@ -641,7 +623,7 @@ class Uri implements UriInterface
      *
      * @return string The URI user information, in "username[:password]" format.
      */
-    public function getUserInfo()
+    public function getUserInfo(): string
     {
         return $this->user . ($this->password !== '' ? ':' . $this->password : '');
     }
@@ -658,7 +640,7 @@ class Uri implements UriInterface
      *
      * @return string The URI host.
      */
-    public function getHost()
+    public function getHost(): string
     {
         return $this->host;
     }
@@ -678,7 +660,7 @@ class Uri implements UriInterface
      *
      * @return null|int The URI port.
      */
-    public function getPort()
+    public function getPort(): ?int
     {
         return $this->port && !$this->hasStandardPort() ? $this->port : null;
     }
@@ -688,7 +670,7 @@ class Uri implements UriInterface
      *
      * @return bool
      */
-    protected function hasStandardPort()
+    protected function hasStandardPort(): bool
     {
         return ($this->scheme === 'http' && $this->port === 80) || ($this->scheme === 'https' && $this->port === 443);
     }
@@ -703,7 +685,7 @@ class Uri implements UriInterface
      *
      * @return string The base path segment of the URI.
      */
-    public function getBasePath()
+    public function getBasePath(): string
     {
         return $this->basePath;
     }
@@ -734,7 +716,7 @@ class Uri implements UriInterface
      *
      * @return string The URI path.
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }
@@ -760,7 +742,7 @@ class Uri implements UriInterface
      *
      * @return string
      */
-    public function getQuery()
+    public function getQuery(): string
     {
         return $this->query;
     }
@@ -782,7 +764,7 @@ class Uri implements UriInterface
      *
      * @return string The URI fragment.
      */
-    public function getFragment()
+    public function getFragment(): string
     {
         return $this->fragment;
     }
@@ -796,16 +778,14 @@ class Uri implements UriInterface
      *
      * @return string
      */
-    public function getBaseUrl()
+    public function getBaseUrl(): string
     {
         $scheme = $this->getScheme();
         $authority = $this->getAuthority();
         $basePath = $this->getBasePath();
-
         if ($authority !== '' && substr($basePath, 0, 1) !== '/') {
             $basePath = $basePath . '/' . $basePath;
         }
-
         return ($scheme !== '' ? $scheme . ':' : '')
             . ($authority ? '//' . $authority : '')
             . rtrim($basePath, '/');

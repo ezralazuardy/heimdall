@@ -54,7 +54,7 @@ class Cookies implements CookiesInterface
     /**
      * {@inheritdoc}
      */
-    public static function parseHeader($header)
+    public static function parseHeader($header): array
     {
         if (is_array($header) === true) {
             $header = isset($header[0]) ? $header[0] : '';
@@ -116,7 +116,7 @@ class Cookies implements CookiesInterface
     /**
      * {@inheritdoc}
      */
-    public function toHeaders()
+    public function toHeaders(): array
     {
         $headers = [];
         foreach ($this->responseCookies as $name => $properties) {
@@ -134,7 +134,7 @@ class Cookies implements CookiesInterface
      *
      * @return string
      */
-    protected function toHeader($name, array $properties)
+    protected function toHeader($name, array $properties): string
     {
         $result = urlencode($name) . '=' . urlencode($properties['value']);
 

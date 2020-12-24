@@ -22,7 +22,7 @@ class InvalidMethodException extends InvalidArgumentException
      * @param ServerRequestInterface $request
      * @param string $method
      */
-    public function __construct(ServerRequestInterface $request, $method)
+    public function __construct(ServerRequestInterface $request, string $method)
     {
         $this->request = $request;
         parent::__construct(sprintf('Unsupported HTTP method "%s" provided', $method));
@@ -31,7 +31,7 @@ class InvalidMethodException extends InvalidArgumentException
     /**
      * @return ServerRequestInterface
      */
-    public function getRequest()
+    public function getRequest(): ServerRequestInterface
     {
         return $this->request;
     }

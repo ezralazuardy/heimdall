@@ -48,14 +48,7 @@ abstract class Heimdall
         HeimdallOIDC $oidc = null
     ): HeimdallAuthorizationServer
     {
-        switch ($grant->getCode()) {
-            case HeimdallAuthorizationGrant::AuthorizationCode:
-                return new HeimdallAuthorizationServer($config, $grant, $oidc);
-            default:
-                throw new HeimdallConfigException(
-                    'Unknown Heimdall grant type, please recheck your parameter.'
-                );
-        }
+        return new HeimdallAuthorizationServer($config, $grant, $oidc);
     }
 
     /**

@@ -35,5 +35,5 @@ interface HeadersInterface extends CollectionInterface
      *
      * @return string Normalized header name
      */
-    public function normalizeKey($key);
+    public function normalizeKey($key): string;
 }
