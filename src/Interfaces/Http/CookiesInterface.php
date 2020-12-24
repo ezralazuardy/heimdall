@@ -13,6 +13,17 @@ use InvalidArgumentException;
 interface CookiesInterface
 {
     /**
+     * Parse HTTP request `Cookie:` header and extract into a PHP associative array.
+     *
+     * @param string $header The raw HTTP request `Cookie:` header
+     *
+     * @return array Associative array of cookie names and values
+     *
+     * @throws InvalidArgumentException if the cookie data cannot be parsed
+     */
+    public static function parseHeader($header): array;
+
+    /**
      * Get request cookie
      *
      * @param string $name Cookie name
@@ -36,15 +47,4 @@ interface CookiesInterface
      * @return string[]
      */
     public function toHeaders(): array;
-
-    /**
-     * Parse HTTP request `Cookie:` header and extract into a PHP associative array.
-     *
-     * @param string $header The raw HTTP request `Cookie:` header
-     *
-     * @return array Associative array of cookie names and values
-     *
-     * @throws InvalidArgumentException if the cookie data cannot be parsed
-     */
-    public static function parseHeader($header): array;
 }

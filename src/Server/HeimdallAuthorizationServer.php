@@ -32,6 +32,49 @@ class HeimdallAuthorizationServer
     private $server;
 
     /**
+     * HeimdallAuthorizationServer constructor.
+     * @param HeimdallAuthorizationConfig $config
+     * @param HeimdallAuthorizationGrant $grant
+     * @param HeimdallOIDC|null $oidc
+     */
+    function __construct(
+        HeimdallAuthorizationConfig $config,
+        HeimdallAuthorizationGrant $grant,
+        HeimdallOIDC $oidc = null
+    )
+    {
+        $this->initialize($config, $oidc)->setGrantType($grant);
+    }
+
+    /**
+     * @param HeimdallAuthorizationGrant $grant
+     * @return $this|void
+     */
+    private function setGrantType(HeimdallAuthorizationGrant $grant): HeimdallAuthorizationServer
+    {
+        try {
+            $this->server->enableGrantType(
+                $grant->getGrantType(),
+                new DateInterval($grant->getAccessTokenTTL())
+            );
+            return $this;
+        } catch (Exception $exception) {
+            $this->handleException(new HeimdallConfigException(
+                'Error when applying Heimdall grant type, please check your configuration.',
+                $exception->getCode()
+            ));
+        }
+    }
+
+    /**
+     * @param Exception $exception
+     */
+    function handleException(Exception $exception)
+    {
+        Heimdall::handleException($exception);
+    }
+
+    /**
      * @param HeimdallAuthorizationConfig $config
      * @param $oidc
      * @return $this|void
@@ -61,41 +104,6 @@ class HeimdallAuthorizationServer
     }
 
     /**
-     * @param HeimdallAuthorizationGrant $grant
-     * @return $this|void
-     */
-    private function setGrantType(HeimdallAuthorizationGrant $grant): HeimdallAuthorizationServer
-    {
-        try {
-            $this->server->enableGrantType(
-                $grant->getGrantType(),
-                new DateInterval($grant->getAccessTokenTTL())
-            );
-            return $this;
-        } catch (Exception $exception) {
-            $this->handleException(new HeimdallConfigException(
-                'Error when applying Heimdall grant type, please check your configuration.',
-                $exception->getCode()
-            ));
-        }
-    }
-
-    /**
-     * HeimdallAuthorizationServer constructor.
-     * @param HeimdallAuthorizationConfig $config
-     * @param HeimdallAuthorizationGrant $grant
-     * @param HeimdallOIDC|null $oidc
-     */
-    function __construct(
-        HeimdallAuthorizationConfig $config,
-        HeimdallAuthorizationGrant $grant,
-        HeimdallOIDC $oidc = null
-    )
-    {
-        $this->initialize($config, $oidc)->setGrantType($grant);
-    }
-
-    /**
      * @param $request
      * @param $response
      * @return $this
@@ -105,31 +113,6 @@ class HeimdallAuthorizationServer
         $this->request = &$request;
         $this->response = &$response;
         return $this;
-    }
-
-    /**
-     * @return void
-     */
-    function validateRequestAndResponse()
-    {
-        if (empty($this->request))
-            $this->handleException(
-                new HeimdallServerException(
-                    'Server Request is undefined, please apply it via bootstrap().',
-                    0,
-                    'heimdall_bootstrap_request_error',
-                    500
-                )
-            );
-        else if (empty($this->response))
-            $this->handleException(
-                new HeimdallServerException(
-                    'Server Response is undefined, please apply it via bootstrap().',
-                    1,
-                    'heimdall_bootstrap_response_error',
-                    500
-                )
-            );
     }
 
     /**
@@ -150,24 +133,6 @@ class HeimdallAuthorizationServer
     {
         $this->response = $response;
         return $this;
-    }
-
-    /**
-     * @param ResponseInterface $generatedResponse
-     * @return Response|void
-     */
-    function return(ResponseInterface $generatedResponse): Response
-    {
-        $this->validateRequestAndResponse();
-        Heimdall::return($generatedResponse, $this->response);
-    }
-
-    /**
-     * @param Exception $exception
-     */
-    function handleException(Exception $exception)
-    {
-        Heimdall::handleException($exception);
     }
 
     /**
@@ -211,6 +176,41 @@ class HeimdallAuthorizationServer
                 500
             );
         }
+    }
+
+    /**
+     * @param ResponseInterface $generatedResponse
+     * @return Response|void
+     */
+    function return(ResponseInterface $generatedResponse): Response
+    {
+        $this->validateRequestAndResponse();
+        Heimdall::return($generatedResponse, $this->response);
+    }
+
+    /**
+     * @return void
+     */
+    function validateRequestAndResponse()
+    {
+        if (empty($this->request))
+            $this->handleException(
+                new HeimdallServerException(
+                    'Server Request is undefined, please apply it via bootstrap().',
+                    0,
+                    'heimdall_bootstrap_request_error',
+                    500
+                )
+            );
+        else if (empty($this->response))
+            $this->handleException(
+                new HeimdallServerException(
+                    'Server Response is undefined, please apply it via bootstrap().',
+                    1,
+                    'heimdall_bootstrap_response_error',
+                    500
+                )
+            );
     }
 
     /**

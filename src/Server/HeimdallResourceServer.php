@@ -22,6 +22,15 @@ class HeimdallResourceServer
     private $server;
 
     /**
+     * HeimdallResourceServer constructor.
+     * @param HeimdallResourceConfig $config
+     */
+    function __construct(HeimdallResourceConfig $config)
+    {
+        $this->initialize($config);
+    }
+
+    /**
      * @param HeimdallResourceConfig $config
      * @return $this|void
      */
@@ -40,15 +49,6 @@ class HeimdallResourceServer
                 $exception->getCode()
             ));
         }
-    }
-
-    /**
-     * HeimdallResourceServer constructor.
-     * @param HeimdallResourceConfig $config
-     */
-    function __construct(HeimdallResourceConfig $config)
-    {
-        $this->initialize($config);
     }
 
     /**
