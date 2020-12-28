@@ -134,7 +134,7 @@ class Headers extends Collection implements HeadersInterface
     /**
      * {@inheritdoc}
      */
-    public function normalizeKey($key)
+    public function normalizeKey($key): string
     {
         $key = strtr(strtolower($key), '_', '-');
         if (strpos($key, 'http-') === 0) {
