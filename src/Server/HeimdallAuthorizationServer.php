@@ -185,7 +185,7 @@ class HeimdallAuthorizationServer
     function return(ResponseInterface $generatedResponse): Response
     {
         $this->validateRequestAndResponse();
-        Heimdall::return($generatedResponse, $this->response);
+        return Heimdall::return($generatedResponse, $this->response);
     }
 
     /**

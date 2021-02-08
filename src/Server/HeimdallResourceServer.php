@@ -63,10 +63,10 @@ class HeimdallResourceServer
      * @param RequestInterface $request
      * @throws HeimdallServerException
      */
-    function validate(RequestInterface $request)
+    function validate(RequestInterface &$request)
     {
         try {
-            $this->server->validateAuthenticatedRequest(
+            $response = $this->server->validateAuthenticatedRequest(
                 Heimdall::handleRequest(
                     new IncomingRequest(config('app'),
                         $request->uri, $request->getBody(),
@@ -74,6 +74,8 @@ class HeimdallResourceServer
                     )
                 )
             );
+            
+            $request->setHeader('authorization', $response->getAttributes());
         } catch (OAuthServerException $exception) {
             throw new HeimdallServerException(
                 $exception->getMessage(),
