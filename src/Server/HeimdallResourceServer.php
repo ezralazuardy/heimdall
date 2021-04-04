@@ -74,7 +74,6 @@ class HeimdallResourceServer
                     )
                 )
             );
-            
             $request->setHeader('authorization', $response->getAttributes());
         } catch (OAuthServerException $exception) {
             throw new HeimdallServerException(
