@@ -223,7 +223,7 @@ class Response extends Message implements ResponseInterface
      *
      * @throws InvalidArgumentException For invalid header names or values.
      */
-    public function withHeader($name, $value): Response
+    public function withHeader($name, $value): Message
     {
         $clone = clone $this;
         $clone->headers->set($name, $value);
