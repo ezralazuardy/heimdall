@@ -48,7 +48,7 @@ Heimdall implements the standards compliant implementation of an [OAuth 2](https
 
 This library was created in order to simplify the need of OAuth 2 implementation in your CodeIgniter 4 framework, based on the [OAuth 2.0 Server](https://github.com/thephpleague/oauth2-server) library by [thephpleague](https://thephpleague.com/).
 
-#### Latest version
+**Latest version**
 
 See the latest version of Heimdall [here](https://github.com/ezralazuardy/heimdall/releases).
 
@@ -58,13 +58,13 @@ See the latest version of Heimdall [here](https://github.com/ezralazuardy/heimda
 
 In order to install Heimdall, you have to use [Composer](https://getcomposer.org/).
 
-In your root directory of your CodeIgniter 4 project, fire up a terminal and run:
+In the root directory of your CodeIgniter 4 project, fire up a terminal and run:
 
 ```
 composer require ezralazuardy/heimdall
 ```
 
-Then Heimdall is ready to be configured and run in your server.
+Heimdall is now ready to be configured and run in your server.
 
 <br/>
 
