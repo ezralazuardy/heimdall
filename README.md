@@ -48,7 +48,7 @@ Heimdall implements the standards compliant implementation of an [OAuth 2](https
 
 This library was created in order to simplify the need of OAuth 2 implementation in your CodeIgniter 4 framework, based on the [OAuth 2.0 Server](https://github.com/thephpleague/oauth2-server) library by [thephpleague](https://thephpleague.com/).
 
-#### Latest version
+**Latest version**
 
 See the latest version of Heimdall [here](https://github.com/ezralazuardy/heimdall/releases).
 
