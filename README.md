@@ -58,13 +58,13 @@ See the latest version of Heimdall [here](https://github.com/ezralazuardy/heimda
 
 In order to install Heimdall, you have to use [Composer](https://getcomposer.org/).
 
-In your root directory of your CodeIgniter 4 project, fire up a terminal and run:
+In the root directory of your CodeIgniter 4 project, fire up a terminal and run:
 
 ```
 composer require ezralazuardy/heimdall
 ```
 
-Then Heimdall is ready to be configured and run in your server.
+Heimdall is now ready to be configured and run in your server.
 
 <br/>
 
