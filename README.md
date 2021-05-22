@@ -3,13 +3,38 @@
 <br/>
 
 <p align="center">
-  <a href="https://codacy.com/manual/ezralazuardy/heimdall?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ezralazuardy/heimdall&amp;utm_campaign=Badge_Grade"><img src="https://img.shields.io/codacy/grade/7bf60d1d0442427292563115adc17ac0" alt="code quality" target="_blank" rel="noopener noreferrer"></a>
-  <a href="https://codeclimate.com/github/ezralazuardy/heimdall"><img src="https://img.shields.io/codeclimate/maintainability/ezralazuardy/heimdall" alt="maintainability" target="_blank" rel="noopener noreferrer"></a>
-  <a href="https://github.com/ezralazuardy/heimdall/actions?query=workflow%3Abuild"><img src="https://img.shields.io/github/workflow/status/ezralazuardy/heimdall/build" alt="build status" target="_blank" rel="noopener noreferrer"></a>
-  <a href="https://github.com/ezralazuardy/heimdall/releases"><img src="https://img.shields.io/github/v/release/ezralazuardy/heimdall" alt="release" target="_blank" rel="noopener noreferrer"></a>
-  <a href="https://packagist.org/packages/ezralazuardy/heimdall"><img src="https://img.shields.io/packagist/php-v/ezralazuardy/heimdall" alt="minimum PHP version" target="_blank" rel="noopener noreferrer"></a>
-  <a href="https://github.com/ezralazuardy/heimdall/issues"><img src="https://img.shields.io/github/issues/ezralazuardy/heimdall?color=red" alt="issues" target="_blank" rel="noopener noreferrer"></a>
-  <a href="https://github.com/ezralazuardy/heimdall/blob/master/LICENSE"><img src="https://img.shields.io/github/license/ezralazuardy/heimdall" alt="license" target="_blank" rel="noopener noreferrer"></a>
+
+  <a href="https://codacy.com/manual/ezralazuardy/heimdall?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ezralazuardy/heimdall&amp;utm_campaign=Badge_Grade">
+    <img src="https://img.shields.io/codacy/grade/7bf60d1d0442427292563115adc17ac0" alt="Code Quality" target="_blank" rel="noopener noreferrer">
+  </a>
+
+  <a href="https://codeclimate.com/github/ezralazuardy/heimdall">
+    <img src="https://img.shields.io/codeclimate/maintainability/ezralazuardy/heimdall" alt="Maintainability" target="_blank" rel="noopener noreferrer">
+  </a>
+
+  <a href="https://github.com/ezralazuardy/heimdall/actions/workflows/build.yml">
+    <img src="https://img.shields.io/github/workflow/status/ezralazuardy/heimdall/Build?label=build" alt="Build" target="_blank" rel="noopener noreferrer">
+  </a>
+
+  <a href="https://github.com/ezralazuardy/heimdall/actions/workflows/codacy-analysis.yml">
+    <img src="https://img.shields.io/github/workflow/status/ezralazuardy/heimdall/Codacy%20Security%20Scan?label=security" alt="Codacy Security Scan" target="_blank" rel="noopener noreferrer">
+  </a>
+
+  <a href="https://github.com/ezralazuardy/heimdall/releases">
+    <img src="https://img.shields.io/github/v/release/ezralazuardy/heimdall" alt="Releases" target="_blank" rel="noopener noreferrer">
+  </a>
+
+  <a href="https://packagist.org/packages/ezralazuardy/heimdall">
+    <img src="https://img.shields.io/packagist/php-v/ezralazuardy/heimdall" alt="Minimum PHP version" target="_blank" rel="noopener noreferrer">
+  </a>
+
+  <a href="https://github.com/ezralazuardy/heimdall/issues">
+    <img src="https://img.shields.io/github/issues/ezralazuardy/heimdall?color=red" alt="Issues" target="_blank" rel="noopener noreferrer">
+  </a>
+
+  <a href="https://github.com/ezralazuardy/heimdall/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/ezralazuardy/heimdall" alt="License" target="_blank" rel="noopener noreferrer">
+  </a>
 </p>
 
 ---
