@@ -9,9 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
+      - name: 📥 Install Github Action Checkout
+        uses: actions/checkout@v2
 
       - name: 🔍 Validate Composer Configuration
         run: composer validate
