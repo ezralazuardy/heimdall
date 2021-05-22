@@ -31,8 +31,6 @@ See the latest version of Heimdall [here](https://github.com/ezralazuardy/heimda
 
 ## ✍️ Installation
 
-#### Composer setup
-
 In order to install Heimdall, you have to use [Composer](https://getcomposer.org/).
 
 In your root directory of your CodeIgniter 4 project, fire up a terminal and run:
