@@ -97,3 +97,8 @@ Read the current Heimdall's security policy [here](https://github.com/ezralazuar
 ## 🗒️ Side Note
 
 Heimdall is at it's early stage. If you experiencing an error or bug, please report by creating a new [issues](https://github.com/ezralazuardy/heimdall/issues).
+
+<br/>
+
+## 📜 License
+<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fezralazuardy%2Fheimdall?ref=badge_large" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fezralazuardy%2Fheimdall.svg?type=large"/></a>
