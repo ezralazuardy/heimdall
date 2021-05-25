@@ -11,6 +11,7 @@
   <a href="https://codeclimate.com/github/ezralazuardy/heimdall">
     <img src="https://img.shields.io/codeclimate/maintainability/ezralazuardy/heimdall" alt="Maintainability" target="_blank" rel="noopener noreferrer">
   </a>
+<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fezralazuardy%2Fheimdall?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fezralazuardy%2Fheimdall.svg?type=shield"/></a>
 
   <a href="https://github.com/ezralazuardy/heimdall/actions/workflows/build.yml">
     <img src="https://img.shields.io/github/workflow/status/ezralazuardy/heimdall/Build?label=build" alt="Build" target="_blank" rel="noopener noreferrer">
@@ -53,6 +54,9 @@ This library was created in order to simplify the need of OAuth 2 implementation
 See the latest version of Heimdall [here](https://github.com/ezralazuardy/heimdall/releases).
 
 <br/>
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fezralazuardy%2Fheimdall.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fezralazuardy%2Fheimdall?ref=badge_large)
 
 ## ✍️ Installation
 
