@@ -1,9 +1,25 @@
 pull_request_rules:
-  - name: Automatic merge on approval
+  - name: ✔️ Automatic merge on pull request approval
     conditions:
-      - approved-reviews-by >= 1
+      - approved-reviews-by>=1
+      - check-success=Codacy Security Scan
+      - check-success=GitGuardian Security Checks
+      - check-success=build
     actions:
       merge:
         method: merge
       comment:
-        message: 🤖 Automatic merge on pull request approval
+        message: ✔️ Automatic merge on pull request approval
+  - name: 📦 Automatic merge on @dependabot pull request
+    conditions:
+      - author~=^dependabot(|-preview)\[bot\]$
+      - label=dependencies
+      - check-success=Codacy Security Scan
+      - check-success=GitGuardian Security Checks
+      - check-success=build
+    actions:
+      merge:
+        method: merge
+        strict: smart
+      comment:
+        message: 📦 Automatic merge on @dependabot pull request
