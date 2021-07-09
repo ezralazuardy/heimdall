@@ -4,7 +4,7 @@
 
 <p align="center">
 
-  <a href="https://codacy.com/manual/ezralazuardy/heimdall?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ezralazuardy/heimdall&amp;utm_campaign=Badge_Grade">
+  <a href="https://www.codacy.com/gh/ezralazuardy/heimdall/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ezralazuardy/heimdall&amp;utm_campaign=Badge_Grade">
     <img src="https://img.shields.io/codacy/grade/ff30d1e1cc494b1ca03462cd90f2e1f1" alt="Code Quality" target="_blank" rel="noopener noreferrer">
   </a>
 
