@@ -5,7 +5,7 @@
 <p align="center">
 
   <a href="https://codacy.com/manual/ezralazuardy/heimdall?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ezralazuardy/heimdall&amp;utm_campaign=Badge_Grade">
-    <img src="https://img.shields.io/codacy/grade/7bf60d1d0442427292563115adc17ac0" alt="Code Quality" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/codacy/grade/ff30d1e1cc494b1ca03462cd90f2e1f1" alt="Code Quality" target="_blank" rel="noopener noreferrer">
   </a>
 
   <a href="https://codeclimate.com/github/ezralazuardy/heimdall">
@@ -48,7 +48,7 @@ Heimdall implements the standards compliant implementation of an [OAuth 2](https
 
 This library was created in order to simplify the need of OAuth 2 implementation in your CodeIgniter 4 framework, based on the [OAuth 2.0 Server](https://github.com/thephpleague/oauth2-server) library by [thephpleague](https://thephpleague.com/).
 
-**Latest version**
+#### Latest version
 
 See the latest version of Heimdall [here](https://github.com/ezralazuardy/heimdall/releases).
 
@@ -60,7 +60,7 @@ In order to install Heimdall, you have to use [Composer](https://getcomposer.org
 
 In the root directory of your CodeIgniter 4 project, fire up a terminal and run:
 
-```
+```bash
 composer require ezralazuardy/heimdall
 ```
 
