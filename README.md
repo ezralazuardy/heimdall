@@ -1,7 +1,5 @@
 <div>
   <img alt="Build" src="https://github.com/ezralazuardy/heimdall/actions/workflows/build.yml/badge.svg" />
-  <img alt="Codacy Security Scan" src="https://github.com/ezralazuardy/heimdall/actions/workflows/codacy-analysis.yml/badge.svg" />
-  <img alt="License" src="https://img.shields.io/github/license/ezralazuardy/heimdall" />
   <img alt="Releases" src="https://img.shields.io/github/v/release/ezralazuardy/heimdall" />
   <img alt="Minimum PHP version" src="https://img.shields.io/packagist/php-v/ezralazuardy/heimdall" />
   <img alt="Issues" src="https://img.shields.io/github/issues/ezralazuardy/heimdall?color=red" />
