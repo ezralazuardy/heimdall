@@ -1,43 +1,15 @@
-<p align="center"><a href="https://heimdall.ezralazuardy.com" target="_blank" rel="noopener noreferrer"><img width="500" src="https://heimdall.ezralazuardy.com/img/heimdall.png" alt="Heimdall"></a></p>
+<div>
+  <img alt="Build" src="https://github.com/ezralazuardy/heimdall/actions/workflows/build.yml/badge.svg" />
+  <img alt="Codacy Security Scan" src="https://github.com/ezralazuardy/heimdall/actions/workflows/codacy-analysis.yml/badge.svg" />
+  <img alt="License" src="https://img.shields.io/github/license/ezralazuardy/heimdall" />
+  <img alt="Releases" src="https://img.shields.io/github/v/release/ezralazuardy/heimdall" />
+  <img alt="Minimum PHP version" src="https://img.shields.io/packagist/php-v/ezralazuardy/heimdall" />
+  <img alt="Issues" src="https://img.shields.io/github/issues/ezralazuardy/heimdall?color=red" />
+  <img alt="Code Quality" src="https://img.shields.io/codacy/grade/ff30d1e1cc494b1ca03462cd90f2e1f1" />
+  <img alt="Maintainability" src="https://img.shields.io/codeclimate/maintainability/ezralazuardy/heimdall" />
+</div>
 
-<br/>
-
-<p align="center">
-
-  <a href="https://www.codacy.com/gh/ezralazuardy/heimdall/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ezralazuardy/heimdall&amp;utm_campaign=Badge_Grade">
-    <img src="https://img.shields.io/codacy/grade/ff30d1e1cc494b1ca03462cd90f2e1f1" alt="Code Quality" target="_blank" rel="noopener noreferrer">
-  </a>
-
-  <a href="https://codeclimate.com/github/ezralazuardy/heimdall">
-    <img src="https://img.shields.io/codeclimate/maintainability/ezralazuardy/heimdall" alt="Maintainability" target="_blank" rel="noopener noreferrer">
-  </a>
-
-  <a href="https://github.com/ezralazuardy/heimdall/actions/workflows/build.yml">
-    <img src="https://img.shields.io/github/workflow/status/ezralazuardy/heimdall/Build?label=build" alt="Build" target="_blank" rel="noopener noreferrer">
-  </a>
-
-  <a href="https://github.com/ezralazuardy/heimdall/actions/workflows/codacy-analysis.yml">
-    <img src="https://img.shields.io/github/workflow/status/ezralazuardy/heimdall/Codacy%20Security%20Scan?label=security" alt="Codacy Security Scan" target="_blank" rel="noopener noreferrer">
-  </a>
-
-  <a href="https://github.com/ezralazuardy/heimdall/releases">
-    <img src="https://img.shields.io/github/v/release/ezralazuardy/heimdall" alt="Releases" target="_blank" rel="noopener noreferrer">
-  </a>
-
-  <a href="https://packagist.org/packages/ezralazuardy/heimdall">
-    <img src="https://img.shields.io/packagist/php-v/ezralazuardy/heimdall" alt="Minimum PHP version" target="_blank" rel="noopener noreferrer">
-  </a>
-
-  <a href="https://github.com/ezralazuardy/heimdall/issues">
-    <img src="https://img.shields.io/github/issues/ezralazuardy/heimdall?color=red" alt="Issues" target="_blank" rel="noopener noreferrer">
-  </a>
-
-  <a href="https://github.com/ezralazuardy/heimdall/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/ezralazuardy/heimdall" alt="License" target="_blank" rel="noopener noreferrer">
-  </a>
-</p>
-
----
+## 🤺 Heimdall
 
 Inspired from the Norse mythology, [Heimdallr](https://en.wikipedia.org/wiki/Heimdallr), modernly anglicized as Heimdall is the gatekeeper of Bifröst, the rainbow road connecting Midgard, realm of the humans, to
 Asgard, the realm of Gods.
@@ -70,13 +42,13 @@ Heimdall is now ready to be configured and run in your server.
 
 ## 🚀️ Getting Started
 
-In order to start configuring & implementing Heimdall in your CodeIgniter 4 project, please refer to the [documentation](https://heimdall.ezralazuardy.com).
+In order to start configuring & implementing Heimdall in your CodeIgniter 4 project, please refer to the [documentation](https://heimdall.lazuardy.tech).
 
 <br/>
 
 ## 📖️ Documentation
 
-Read the Heimdall documentation [here](https://heimdall.ezralazuardy.com).
+Read the Heimdall documentation on https://heimdall.lazuardy.tech.
 
 <br/>
 
@@ -101,4 +73,5 @@ Heimdall is at it's early stage. If you experiencing an error or bug, please rep
 <br/>
 
 ## 📜 License
+
 <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fezralazuardy%2Fheimdall?ref=badge_large" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fezralazuardy%2Fheimdall.svg?type=large"/></a>

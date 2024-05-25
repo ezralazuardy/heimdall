@@ -1,48 +1,48 @@
 {
-    "name": "ezralazuardy/heimdall",
-    "description": "Painless OAuth 2.0 Server for CodeIgniter 4",
-    "homepage": "https://github.com/ezralazuardy/heimdall",
-    "license": "MIT",
-    "require": {
-        "php": ">=7.2",
-        "codeigniter4/framework": "^4.0",
-        "league/oauth2-server": "^8.1",
-        "laminas/laminas-diactoros": "^2.3",
-        "steverhoades/oauth2-openid-connect-server": "^2.0"
-    },
-    "keywords": [
-        "oauth",
-        "oauth2",
-        "oauth 2",
-        "oauth 2.0",
-        "server",
-        "auth",
-        "authorization",
-        "authentication",
-        "resource",
-        "rest",
-        "rest api",
-        "api",
-        "auth",
-        "protect",
-        "secure",
-        "heimdall",
-        "codeigniter",
-        "codeginiter4",
-        "codeigniter 4",
-        "ci",
-        "ci4",
-        "codeigniter oauth"
-    ],
-    "authors": [
-        {
-            "name": "Ezra Lazuardy",
-            "email": "ezralucio@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Heimdall\\": "src/"
-        }
+  "name": "ezralazuardy/heimdall",
+  "description": "Painless OAuth 2.0 Server for CodeIgniter 4",
+  "homepage": "https://github.com/ezralazuardy/heimdall",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.1",
+    "codeigniter4/framework": "^4.0",
+    "league/oauth2-server": "^8.1",
+    "laminas/laminas-diactoros": "^3.3.1",
+    "steverhoades/oauth2-openid-connect-server": "^2.0"
+  },
+  "keywords": [
+    "oauth",
+    "oauth2",
+    "oauth 2",
+    "oauth 2.0",
+    "server",
+    "auth",
+    "authorization",
+    "authentication",
+    "resource",
+    "rest",
+    "rest api",
+    "api",
+    "auth",
+    "protect",
+    "secure",
+    "heimdall",
+    "codeigniter",
+    "codeginiter4",
+    "codeigniter 4",
+    "ci",
+    "ci4",
+    "codeigniter oauth"
+  ],
+  "authors": [
+    {
+      "name": "Ezra Lazuardy",
+      "email": "ezra@lazuardy.tech"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Heimdall\\": "src/"
+    }
+  }
 }
