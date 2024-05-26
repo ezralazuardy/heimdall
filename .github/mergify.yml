@@ -20,6 +20,5 @@ pull_request_rules:
     actions:
       merge:
         method: merge
-        strict: smart
       comment:
         message: 📦 Automatic merge on @dependabot pull request
