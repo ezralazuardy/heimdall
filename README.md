@@ -8,7 +8,7 @@
   <img alt="Maintainability" src="https://img.shields.io/codeclimate/maintainability/ezralazuardy/heimdall" />
 </div>
 
-## 🤺 Heimdall
+## 🤺 heimdall
 
 Inspired from the Norse mythology, [Heimdallr](https://en.wikipedia.org/wiki/Heimdallr), modernly anglicized as Heimdall is the gatekeeper of Bifröst, the rainbow road connecting Midgard, realm of the humans, to
 Asgard, the realm of Gods.
