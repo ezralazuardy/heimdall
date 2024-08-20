@@ -16,7 +16,7 @@ class HeimdallRequest extends Request
     {
         $username = null;
         $password = null;
-        $uri = $request->uri->showPassword(true);
+        $uri = $request->getUri()->showPassword(true);
         if (strpos($uri->getUserInfo(), ':')) {
             $userInfo = explode(':', $uri->getUserInfo());
             $username = $userInfo[0];
@@ -33,12 +33,12 @@ class HeimdallRequest extends Request
         parent::__construct(
             $request->getMethod(),
             new Uri(
-                $request->uri->getScheme(),
-                $request->uri->getHost(),
-                $request->uri->getPort(),
-                $request->uri->getPath(),
-                $request->uri->getQuery(),
-                $request->uri->getFragment(),
+                $request->getUri()->getScheme(),
+                $request->getUri()->getHost(),
+                $request->getUri()->getPort(),
+                $request->getUri()->getPath(),
+                $request->getUri()->getQuery(),
+                $request->getUri()->getFragment(),
                 $username,
                 $password
             ),
