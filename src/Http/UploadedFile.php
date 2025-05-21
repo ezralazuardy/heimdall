@@ -174,7 +174,7 @@ class UploadedFile implements UploadedFileInterface
      *
      * @throws RuntimeException in cases when no stream is available or can be created.
      */
-    public function getStream()
+    public function getStream(): StreamInterface
     {
         if ($this->moved) {
             throw new RuntimeException(sprintf('Uploaded file %s has already been moved', $this->name));
@@ -219,7 +219,7 @@ class UploadedFile implements UploadedFileInterface
      * @throws InvalidArgumentException If the $path specified is invalid.
      * @throws RuntimeException On any error during the move operation or on the second subsequent call to the method.
      */
-    public function moveTo($targetPath)
+    public function moveTo($targetPath): void
     {
         if ($this->moved) {
             throw new RuntimeException('Uploaded file already moved');

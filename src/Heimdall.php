@@ -12,7 +12,7 @@ use Heimdall\Exception\HeimdallServerException;
 use Heimdall\Extension\HeimdallOIDC;
 use Heimdall\Http\HeimdallRequest;
 use Heimdall\Http\HeimdallResponse;
-use Heimdall\interfaces\IdentityRepositoryInterface;
+use Heimdall\Interfaces\IdentityRepositoryInterface;
 use Heimdall\Server\HeimdallAuthorizationServer;
 use Heimdall\Server\HeimdallResourceServer;
 use League\OAuth2\Server\AuthorizationValidators\AuthorizationValidatorInterface;

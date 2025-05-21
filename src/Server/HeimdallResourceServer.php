@@ -69,7 +69,7 @@ class HeimdallResourceServer
             $response = $this->server->validateAuthenticatedRequest(
                 Heimdall::handleRequest(
                     new IncomingRequest(config('app'),
-                        $request->uri, $request->getBody(),
+                        $request->getUri(), $request->getBody(),
                         $request->getUserAgent()
                     )
                 )

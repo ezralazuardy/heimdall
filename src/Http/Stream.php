@@ -188,7 +188,7 @@ class Stream implements StreamInterface
      * @see seek()
      *
      */
-    public function rewind()
+    public function rewind(): void
     {
         if (!$this->isSeekable() || rewind($this->stream) === false) {
             throw new RuntimeException('Could not rewind stream');
@@ -295,7 +295,7 @@ class Stream implements StreamInterface
     /**
      * Closes the stream and any underlying resources.
      */
-    public function close()
+    public function close(): void
     {
         if ($this->isAttached() === true) {
             if ($this->isPipe()) {
@@ -361,7 +361,7 @@ class Stream implements StreamInterface
      *
      * @throws RuntimeException If stream is not seekable
      */
-    public function seek($offset, $whence = SEEK_SET)
+    public function seek($offset, $whence = SEEK_SET): void
     {
         // Note that fseek returns 0 on success!
         if (!$this->isSeekable() || fseek($this->stream, $offset, $whence) === -1) {
